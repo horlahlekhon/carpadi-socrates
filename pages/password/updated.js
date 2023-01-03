@@ -8,17 +8,9 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useRouter} from "next/router";
 
-export default function EmailConfirm() {
+export default function Updated() {
 
     const router = useRouter();
-    const [email, setEmail] = useState('');
-
-    const navigateToRegister = () => router.push('/register');
-
-    const handleConfirmEmail = () => {
-        //api logic for email verification
-        router.push('/password/pin');
-    };
 
     return (
         <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
@@ -30,28 +22,14 @@ export default function EmailConfirm() {
                         </div>
                     </div>
 
-                    <div className="mx-4" style={{marginTop: 70}}>
-                        <div className="text-center">
-                            <img src="/images/checked.png" alt="checked" style={{height: 80}} />
-                            <Typography variant="subtitle1" sx={{mt: 3, fontWeight: "bold", fontSize: "20px"}}>
-                                Email Confirmed
+                    <div className="mx-4 px-4 text-center" style={{marginTop: 70}}>
+                        <img src="/images/checked.png" alt="checked" style={{height: 80}} />
+                        <div className="text-center mb-5">
+                            <Typography variant="subtitle1" sx={{mt: 3, fontWeight: "bold", fontSize: "20px", mx: 2}}>
+                                Password Updated Successfully
                             </Typography>
-                            <Typography variant="body2" sx={{mt: 8}}>Reset password?</Typography>
-                            <div className="px-5">
-                                <Button
-                                    variant="text"
-                                    sx={{
-                                        textTransform: "none",
-                                        mt: 1,
-                                        mx: 4,
-                                        fontSize: "18px",
-                                        color: "#000",
-                                    }}>
-                                    Send Password Reset PIN
-                                </Button>
-                            </div>
-                            <Typography variant="caption" sx={{mt: 2}}>
-                                You can only update your password once in 30 days.
+                            <Typography variant="body2" sx={{mt: 1, mx: 0}}>
+                                We’ve successfully updated your password
                             </Typography>
                         </div>
                     </div>
@@ -77,10 +55,10 @@ export default function EmailConfirm() {
                         <Button
                             variant="contained"
                             fullWidth
-                            onClick={handleConfirmEmail}
+                            href={'/login'}
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3}}
                         >
-                            Proceed
+                            Login
                         </Button>
 
                     </Box>

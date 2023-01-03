@@ -103,7 +103,7 @@ export default function Register() {
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3}}
                         >
                             Log in
-                        </Button>x
+                        </Button>
                         <Typography variant="body2">Don't have an account?
                             <span style={{color: "#56A0D7", marginLeft: "5px"}} onClick={navigateToRegister}>Sign Up</span>
                         </Typography>

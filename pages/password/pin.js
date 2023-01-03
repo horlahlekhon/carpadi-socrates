@@ -15,7 +15,10 @@ export default function Pin() {
     const [pin, setPin] = useState('');
 
     const handlePinChange = (value) => setPin(value);
-    const navigateToRegister = () => router.push('/register');
+    const handlePinSubmit = () => {
+        //api logic for pin reset
+        router.push('/password/reset');
+    };
 
     return (
         <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
@@ -66,6 +69,7 @@ export default function Pin() {
                             variant="contained"
                             fullWidth
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3}}
+                            onClick={handlePinSubmit}
                         >
                             Proceed
                         </Button>

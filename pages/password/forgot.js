@@ -3,8 +3,6 @@ import MobileLayout from "../../src/layouts/MobileLayout";
 import {
     Box,
     Typography,
-    InputAdornment,
-    IconButton,
     Input,
     FormControl,
     InputLabel,
@@ -18,7 +16,10 @@ export default function ForgotPassword() {
     const router = useRouter();
     const [email, setEmail] = useState('');
 
-    const navigateToRegister = () => router.push('/register');
+    const handleProceedClick = () => {
+        //api logic of sending pin to email
+        router.push('/password/email-confirm');
+    };
 
     return (
         <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
@@ -54,6 +55,7 @@ export default function ForgotPassword() {
                         }}
                     >
                         <Button
+                            onClick={handleProceedClick}
                             variant="contained"
                             fullWidth
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3}}

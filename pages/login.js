@@ -23,6 +23,10 @@ export default function Login() {
 
     const handlePasswordIconClick = () => setShowPassword(!showPassword);
     const navigateToRegister = () => router.push('/register');
+    const handleLogin = () => {
+        //api login logic here
+        router.push('/home');
+    };
 
     return (
         <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
@@ -101,6 +105,7 @@ export default function Login() {
                             variant="contained"
                             fullWidth
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3}}
+                            onClick={handleLogin}
                         >
                             Log in
                         </Button>
