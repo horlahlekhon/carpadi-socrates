@@ -7,7 +7,7 @@ export default function CarContinue() {
     return (
         <MobileLayout title='yet to be inspected' backgroundColor='#000'>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
-                <SubNavBar header='home'/>
+                <SubNavBar header='Home'/>
                 <div className="py-2 px-4" style={{height: '84vh'}}>
                     <Typography variant="body1">View details</Typography>
                     <div className="text-center mt-3 mb-2">
@@ -42,9 +42,9 @@ export default function CarContinue() {
                         ipsum in arcu. Praesent tempus mi nisi, ut tempus libero porta eget.
                     </div>
                 </div>
-                <div className="px-4" style={{width: '100%'}}>
+                <div className="px-4 mb-4" style={{width: '100%'}}>
                     <div className="row">
-                        <div className="col-5">
+                        <div className="col-5 px-1">
                             <Button variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                 Download report
                             </Button>

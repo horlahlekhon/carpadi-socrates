@@ -32,7 +32,7 @@ export default function Login() {
         <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
                 <div className="d-flex justify-content-center align-items-center" style={{paddingTop:120}}>
-                    <Box component="img" src="/images/logo-inverse.png" sx={{height: 50}}/>
+                    <Box component="img" src="/images/logo-inverse.png"/>
                     <Typography
                         variant="h5"
                         sx={{color: "#243773", ml: 1, textTransform: "uppercase", fontWeight: "bold"}}
@@ -84,7 +84,7 @@ export default function Login() {
                         </Box>
                         <Box
                             component="a"
-                            ariant="caption"
+                            variant="caption"
                             href="/password/forgot"
                             sx={{textDecoration: "none", fontSize: 13.5}}
                         >
@@ -99,6 +99,7 @@ export default function Login() {
                             alignSelf: "baseline",
                             width: "100%",
                             mt: "180px",
+                            mb: 5
                         }}
                     >
                         <Button
@@ -110,7 +111,7 @@ export default function Login() {
                             Log in
                         </Button>
                         <Typography variant="body2">Don't have an account?
-                            <span style={{color: "#56A0D7", marginLeft: "5px"}} onClick={navigateToRegister}>Sign Up</span>
+                            <span style={{color: "#56A0D7", marginLeft: "5px", cursor: "pointer"}} onClick={navigateToRegister}>Sign Up</span>
                         </Typography>
                     </Box>
                 </div>

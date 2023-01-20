@@ -5,11 +5,11 @@ import {
     Typography,
     Button
 } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useRouter} from "next/router";
 import { MuiOtpInput } from "mui-one-time-password-input";
+import SubNavBar from "../../src/components/SubNavBar";
 
-export default function Pin() {
+export default function VerifyNumber() {
 
     const router = useRouter();
     const [pin, setPin] = useState('');
@@ -17,26 +17,18 @@ export default function Pin() {
     const handlePinChange = (value) => setPin(value);
     const handlePinSubmit = () => {
         //api logic for pin reset
-        router.push('/password/reset');
+        router.push('/account/otp-success');
     };
 
     return (
-        <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
+        <MobileLayout title="verify number" backgroundColor={'#000'}>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
-                <div style={{height: "85vh"}}>
-                    <div className="d-flex justify-content-start">
-                        <div className="m-2">
-                            <ArrowBackIcon onClick={() => router.back()}/>
-                        </div>
-                    </div>
+                <SubNavBar header='Verify Phone Number'/>
 
-                    <div className="mx-4" style={{marginTop: 70}}>
-                        <div className="text-center mb-5">
-                            <Typography variant="subtitle1" sx={{mt: 3, fontWeight: "bold", fontSize: "20px"}}>
-                                Enter Reset PIN
-                            </Typography>
-                            <Typography variant="body2" sx={{mt: 1, mx: 4}}>
-                                Kindly enter the provided PIN in your mail to reset your password
+                    <div className="mx-4" style={{marginTop: 40, height: "70vh"}}>
+                        <div className="mb-3">
+                            <Typography sx={{fontWeight: "bold", fontSize: "14px"}}>
+                                Enter received OTP to verify
                             </Typography>
                         </div>
                         <MuiOtpInput
@@ -47,16 +39,13 @@ export default function Pin() {
                             TextFieldsProps={{ size: 'small', placeholder: '-'}}
                         />
                     </div>
-                </div>
-                <Box
-                    component="div"
-                    sx={{
-                        height: "15vh",
-                        display: "flex",
-                        mx: 4,
-                        alignItems: "baseline",
-                    }}
-                >
+                    <Box
+                        component="div"
+                        sx={{
+                            display: "flex",
+                            mx: 4,
+                            alignItems: "baseline",
+                        }}>
                     <Box
                         component="div"
                         sx={{
@@ -64,20 +53,18 @@ export default function Pin() {
                             flexGrow: 1,
                             mt: 3,
                             width: "100%",
-                        }}
-                    >
+                        }}>
                         <Button
                             variant="contained"
                             fullWidth
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3}}
-                            onClick={handlePinSubmit}
-                        >
-                            Proceed
+                            onClick={handlePinSubmit}>
+                            Verify
                         </Button>
 
                     </Box>
                 </Box>
-            </Box>
+                </Box>
         </MobileLayout>
     )
 }

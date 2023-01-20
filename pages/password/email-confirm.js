@@ -21,7 +21,7 @@ export default function EmailConfirm() {
     };
 
     return (
-        <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
+        <MobileLayout title="email confirmed" backgroundColor={'#000'}>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
                 <div style={{height: "85vh"}}>
                     <div className="d-flex justify-content-start">
@@ -47,7 +47,7 @@ export default function EmailConfirm() {
                                         fontSize: "18px",
                                         color: "#000",
                                     }}>
-                                    Send Password Reset PIN
+                                    Send Password <br/> Reset PIN
                                 </Button>
                             </div>
                             <Typography variant="caption" sx={{mt: 2}}>

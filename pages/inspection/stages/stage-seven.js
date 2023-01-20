@@ -1,0 +1,135 @@
+import React, { useState, useEffect } from 'react'
+import MobileLayout from "../../../src/layouts/MobileLayout";
+import {Box, Typography, Button,Grid} from "@mui/material";
+import SubNavBar from '../../../src/components/SubNavBar';
+import {interior_two, electrical_system_one} from '../../../src/utils/temp-data'
+import Drawer from '@mui/material/Drawer';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+
+export default function StageSeven() {
+    const [interiorTwo, setInteriorTwo] = useState(interior_two)
+    const [electricSystemOne, setElectricSystemOne] = useState(electrical_system_one)
+    const [selectedBox, setSelectedBox] = useState(null);
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        setInteriorTwo(interiorTwo)
+        setElectricSystemOne(electricSystemOne)
+      }, [interiorTwo, electricSystemOne])
+
+
+    const handleClick = (box) => {
+        setSelectedBox(box);
+      };
+
+    //click function that opens the drawer
+    function handleOpen() {
+        setOpen(!open);
+    }
+
+
+
+
+  return (  
+    <MobileLayout title="Inspection Stage 7" backgroundColor={'#000'}>
+    <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
+      <SubNavBar header='Inspection Stage 7'/>
+     <div className='px-4'>
+        <div>
+            <Grid container sx={{mt: 2}}>
+                <Grid item xs={9}>
+                    <Typography sx={{fontWeight: '500', fontSize: '14px', color: '#439F6E'}}>G=Good</Typography>
+                    <Typography sx={{fontWeight: '500', fontSize: '14px', color: '#FFB82E'}}>F=Fair</Typography>
+                    <Typography sx={{fontWeight: '500', fontSize: '14px', color: '#F93232'}}>P=Poor</Typography>
+                </Grid>
+                    <Grid item xs={3}>
+                    <Button onClick={handleOpen} sx={{mt:2, color: "#243773", fontWeight: 500, fontSize: '12px'}}>Add Image  +</Button>
+                    </Grid>
+                </Grid>
+        
+        <div className="py-3">
+            <div className="small fw-bold">Interior</div>
+                {
+                    interiorTwo.map((carInterior) => (
+                        <Grid key={carInterior.id} container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                        <Grid item xs={8}>
+                            <Typography sx={{fontWeight: 400, fontSize: "16px",}}>{carInterior.name}</Typography>
+                        </Grid>
+                        <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
+                        <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
+                        <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
+                        <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
+                        </Grid>
+                    </Grid>
+                    ))
+                }
+             </div>
+             <div className="py-3">
+                <div className="small fw-bold">Electrical System</div>
+                    {
+                        electricSystemOne.map((carElectric) => (
+                            <Grid key={carElectric.id} container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                            <Grid item xs={8}>
+                                <Typography sx={{fontWeight: 400, fontSize: "16px",}}>{carElectric.name}</Typography>
+                            </Grid>
+                            <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
+                            <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
+                            <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
+                            <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
+                            </Grid>
+                        </Grid>
+                        ))
+                    }
+                    
+                </div>
+
+                <div className="mt-5 mb-4" style={{width: '100%'}}>
+                    <div className="row">
+                        <div className="col-5 px-1">
+                            <Button href='/inspection/stages/stage-six' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                                Back
+                            </Button>
+                        </div>
+
+                        <div className="col-7">
+                            <Button href='/inspection/stages/stage-eight' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                                color: '#fff',
+                              },}}>
+                                Save & Continue
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+
+              
+
+                <Drawer anchor={"bottom"} open={open} 
+                        onClose={() => setOpen(false)}>
+                        <div className='p-4'>
+                        <div className="small fw-bold pb-5">Add image </div>
+                        <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
+                            <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
+                                <Button href='/inspection/stages/upload-image' variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                                    <CloudUploadOutlinedIcon/>
+                                </Button>
+                                <Typography sx={{fontWeight: 500}}>Upload Image</Typography>
+                            </div>
+
+                            <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
+                                <Button variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                                    <AddAPhotoOutlinedIcon/>
+                                </Button>
+                                <Typography sx={{fontWeight: 500}}>Take Photo</Typography>
+                            </div>
+                        </Box>
+                        </div>
+                    </Drawer>
+       </div>
+   </Box>
+</MobileLayout>
+  )
+}
