@@ -4,9 +4,13 @@ import InspectionLayout from "../../src/layouts/InspectionLayout";
 import {Grid, Box, Typography, Button} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {notifications} from '../../src/utils/temp-data';
+import { RotateRight } from "@mui/icons-material";
+import { useRouter } from 'next/router';
+
 
 export default function NotificationIndex() {
 
+    const router = useRouter();
     const [messages, setMessages] = useState(notifications);
 
     useEffect(()  => {
@@ -24,7 +28,7 @@ export default function NotificationIndex() {
               messages.map((message) => (
                 <div key={message.id} className="mt-3">
                 <Grid container spacing={1}>
-                    <Grid item xs={2} sx={{display: "flex",  whiteSpace: "pre-line", background:"#243773", color: '#fff', textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}>
+                    <Grid item xs={2} sx={{pl:0,  display: "flex",  whiteSpace: "pre-line", background:"#243773", color: '#fff', textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}>
                     {message.date}
                     </Grid>
                     <Grid item xs={10}>
@@ -36,7 +40,7 @@ export default function NotificationIndex() {
                                 <LocationOnIcon sx={{width:'20px' }}/>
                                 <Typography variant="body2">{message.location}</Typography>
                             </Box>
-                            <Button href={`/notification/${message.id}`} variant="text" style={{display: "block",float: "right", textTransform: 'capitalize'}}>View details</Button>
+                            <Button onClick={() => router.push(`/notification/${message.id}`)} variant="text" style={{display: "block",float: "right", textTransform: 'capitalize'}}>View details</Button>
                         </Box>
                     </Grid>
                 </Grid>

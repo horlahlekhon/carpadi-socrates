@@ -15,9 +15,11 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import NativeSelect from '@mui/material/NativeSelect';
+import { useRouter } from 'next/router';
 
 
 export default function Edit() {
+    const router = useRouter();
     const [value, setValue] = useState(dayjs('2014-08-18T21:11:54'));
 
     const handleChange = (newValue) => {
@@ -128,13 +130,13 @@ export default function Edit() {
                                 mb: 5
                             }}>
                             <Button
-                               href="/account"
+                               onClick={() => router.push("/account")}
                                 variant="contained"
                                 fullWidth
                                 sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3,'&:hover': { color: '#fff',}}}>
                                 Save changes
                             </Button>
-                            <Button href='./' variant="text" sx={{color: "#56A0D7", textTransform: 'capitalize', fontWeight: 500,fontSize: "16px",}}>Discard</Button>
+                            <Button  onClick={() => router.back()} variant="text" sx={{color: "#56A0D7", textTransform: 'capitalize', fontWeight: 500,fontSize: "16px",}}>Discard</Button>
                         </Box>
                         </div>
                     </div>

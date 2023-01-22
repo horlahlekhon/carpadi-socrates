@@ -5,10 +5,11 @@ import {
     Typography,
     Button
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 
 export default function OtpSuccess() {
-
+    const router = useRouter();
 
     return (
         <MobileLayout title="otp success" backgroundColor={'#000'}>
@@ -48,7 +49,7 @@ export default function OtpSuccess() {
                         <Button
                             variant="contained"
                             fullWidth
-                            href={'/account'}
+                            onClick={() => router.push("/account")}
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3, '&:hover': { color: '#fff',}}}>
                             Ok
                         </Button>

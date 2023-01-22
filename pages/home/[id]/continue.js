@@ -2,8 +2,12 @@ import React from "react";
 import MobileLayout from "../../../src/layouts/MobileLayout";
 import {Box, Typography, Button} from "@mui/material";
 import SubNavBar from "../../../src/components/SubNavBar";
+import { useRouter } from "next/router";
 
 export default function CarContinue() {
+
+    const router = useRouter();
+
     return (
         <MobileLayout title='yet to be inspected' backgroundColor='#000'>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
@@ -43,7 +47,7 @@ export default function CarContinue() {
                     </div>
                 </div>
                 <div className="px-4 py-5" style={{width: '100%'}}>
-                    <Button href={`/inspection/stages`} variant="contained" fullWidth sx={{textTransform: 'none', py: 1, '&:hover': {color: '#fff'}}}>
+                    <Button onClick={() => router.push(`/inspection/stages`)} variant="contained" fullWidth sx={{textTransform: 'none', py: 1, '&:hover': {color: '#fff'}}}>
                         Continue Inspection
                     </Button>
                 </div>

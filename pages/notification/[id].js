@@ -47,7 +47,7 @@ export default function NotificationCarDetail() {
                 </div>
                 <div className="px-4 my-5" style={{width: '100%'}}>
                     <Button
-                        href={`/home/${id}/continue`}
+                        onClick={() => router.push(`/home/${id}/continue`)}
                         variant="contained"
                         fullWidth
                         sx={{

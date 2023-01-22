@@ -73,20 +73,20 @@ export default function Login() {
                             }
                         />
                     </FormControl>
-                    <Box sx={{display: "flex", justifyContent: "start", mt: 2}}>
-                        <Box
+                    <Box sx={{display: "flex", justifyContent: "end", mt: 2}}>
+                        {/* <Box
                             component="a"
                             variant="caption"
-                            href="/"
+                            onClick={() => router.push('/')}
                             sx={{flexGrow: 1, textDecoration: "none", fontSize: 13.5}}
                         >
                             Login with Phone
-                        </Box>
+                        </Box> */}
                         <Box
                             component="a"
                             variant="caption"
-                            href="/password/forgot"
-                            sx={{textDecoration: "none", fontSize: 13.5}}
+                            onClick={() => router.push('/password/forgot')}
+                            sx={{textDecoration: "none", fontSize: 13.5, cursor: 'pointer'}}
                         >
                             Forgot your password?
                         </Box>
@@ -110,9 +110,9 @@ export default function Login() {
                         >
                             Log in
                         </Button>
-                        <Typography variant="body2">Don't have an account?
+                        {/* <Typography variant="body2">Don't have an account?
                             <span style={{color: "#56A0D7", marginLeft: "5px", cursor: "pointer"}} onClick={navigateToRegister}>Sign Up</span>
-                        </Typography>
+                        </Typography> */}
                     </Box>
                 </div>
             </Box>

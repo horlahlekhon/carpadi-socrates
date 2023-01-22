@@ -5,9 +5,12 @@ import {
     Typography,
     Button
 } from "@mui/material";
+import { useRouter } from 'next/router';
+
 
 
 export default function InspectionIncomplete() {
+    const router = useRouter();
 
 
     return (
@@ -45,7 +48,7 @@ export default function InspectionIncomplete() {
                         <Button
                             variant="contained"
                             fullWidth
-                            href={'/account'}
+                            onClick={() => router.push('/inspection/stages')}
                             sx={{py: 1, mb: 2, fontSize:12, textTransform: "none", borderRadius: 3, '&:hover': { color: '#fff',}}}>
                             Re-check 
                         </Button>

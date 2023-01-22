@@ -13,7 +13,7 @@ export default function CarContinue() {
                     <div className="text-center mt-3 mb-2">
                         <img src='/images/sample/car-detail.png' style={{height: 100, width: 'auto'}} alt="detail_image"/>
                         <Typography variant="subtitle2" className="fw-bold my-3">Toyota Corolla 2022</Typography>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center mb-5">
                             <Typography variant="caption" className="px-2" sx={{borderRadius: '20px', color: '#439F6E', backgroundColor: '#C8E6C9'}}>Inspection completed</Typography>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ export default function CarContinue() {
                         ipsum in arcu. Praesent tempus mi nisi, ut tempus libero porta eget.
                     </div>
                 </div>
-                <div className="px-4 mb-4" style={{width: '100%'}}>
+                <div className="px-4 my-4" style={{width: '100%'}}>
                     <div className="row">
                         <div className="col-5 px-1">
                             <Button variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>

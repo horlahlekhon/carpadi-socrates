@@ -6,10 +6,12 @@ import {exterior} from '../../../src/utils/temp-data'
 import Drawer from '@mui/material/Drawer';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import { useRouter } from 'next/router';
 
 
 
 export default function UploadImage() {
+    const router = useRouter();
     const [ext, setExt] = useState(exterior)
     const [open, setOpen] = useState(false);
 
@@ -50,7 +52,7 @@ export default function UploadImage() {
                     <Typography sx={{fontWeight: 400, fontSize: "16px",}}>Upload image</Typography>
                 </Grid>
                 <Grid item xs={4} sx={{lineHeight: '1.2', display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                    <Button href='/inspection/stages/stage-two' variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
+                    <Button variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
                 </Grid>
             </Grid>
             <Grid container sx={{isplay:'flex', alignItems:'center', mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
@@ -58,7 +60,7 @@ export default function UploadImage() {
                     <Typography sx={{fontWeight: 400, fontSize: "16px",}}>Upload image</Typography>
                 </Grid>
                 <Grid item xs={4} sx={{lineHeight: '1.2', display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                    <Button href='/inspection/stages/stage-two' variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
+                    <Button variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
                 </Grid>
             </Grid>
             <Grid container sx={{isplay:'flex', alignItems:'center', mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
@@ -66,7 +68,7 @@ export default function UploadImage() {
                     <Typography sx={{fontWeight: 400, fontSize: "16px",}}>Upload image</Typography>
                 </Grid>
                 <Grid item xs={4} sx={{lineHeight: '1.2', display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                    <Button href='/inspection/stages/stage-two' variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
+                    <Button variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
                 </Grid>
             </Grid>
             <Grid container sx={{isplay:'flex', alignItems:'center', mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
@@ -74,7 +76,7 @@ export default function UploadImage() {
                     <Typography sx={{fontWeight: 400, fontSize: "16px",}}>Upload image</Typography>
                 </Grid>
                 <Grid item xs={4} sx={{lineHeight: '1.2', display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                    <Button href='/inspection/stages/stage-two' variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
+                    <Button variant="outlined" size="small" sx={{px: 3, textTransform: 'none', py: 0.5, borderRadius: 3, fontSize: 12}}>Upload</Button>
                 </Grid>
             </Grid>
             <div className="py-5">
@@ -91,13 +93,13 @@ export default function UploadImage() {
              <div className="mb-4" style={{width: '100%'}}>
                    <div className="row">
                        <div className="col-5 px-1">
-                           <Button href='./' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                           <Button onClick={() => router.back()} variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                Back
                            </Button>
                        </div>
 
                        <div className="col-7">
-                           <Button href='/inspection/stages/upload-stage' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                           <Button variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
                                 color: '#fff',
                               },}}>
                                Save
@@ -111,7 +113,7 @@ export default function UploadImage() {
                     <div className="small fw-bold pb-5">Add image </div>
                     <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
                         <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                            <Button href='' variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                            <Button variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
                                 <CloudUploadOutlinedIcon/>
                             </Button>
                             <Typography sx={{fontWeight: 500}}>Upload Image</Typography>

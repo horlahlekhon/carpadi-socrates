@@ -59,8 +59,9 @@ export default function Reset() {
                                             onClick={handlePasswordIconClick}
                                             onMouseDown={handlePasswordIconClick}
                                             edge="end"
+                                            sx={{color:"#56A0D7"}}
                                         >
-                                            {showPassword ? <VisibilityOffIcon sx={{color:"#56A0D7"}} /> : <VisibilityIcon sx={{color:"#56A0D7"}}/>}
+                                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon/>}
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -82,8 +83,9 @@ export default function Reset() {
                                             onClick={handleConfirmPasswordIconClick}
                                             onMouseDown={handleConfirmPasswordIconClick}
                                             edge="end"
+                                            sx={{color:"#56A0D7"}}
                                         >
-                                            {showConfirmPassword ? <VisibilityOffIcon  sx={{color:"#56A0D7"}}/> : <VisibilityIcon  sx={{color:"#56A0D7"}}/>}
+                                            {showConfirmPassword ? <VisibilityOffIcon  /> : <VisibilityIcon  />}
                                         </IconButton>
                                     </InputAdornment>
                                 }

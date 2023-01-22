@@ -4,8 +4,11 @@ import InspectionLayout from "../../src/layouts/InspectionLayout";
 import CarItem from "../../src/components/CarItem";
 import {Cars} from "../../src/utils/temp-data";
 import TopNavBar from "../../src/components/TopNavBar";
+import { useRouter } from "next/router";
+
 
 export default function HomeIndex() {
+    const router = useRouter();
     const [buttonSelect, setButtonSelect] = useState('new');
     const [cars, setCars] = useState(() => Cars.filter(car => car.type === buttonSelect));
 
@@ -54,7 +57,7 @@ export default function HomeIndex() {
                {
                    cars.map(item => (
                        <div className="mb-4" key={Math.random()}>
-                           <CarItem link={`/home/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'View Details'} />
+                           <CarItem carLink={`/home/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'View Details'} />
                        </div>
                    ))
                }

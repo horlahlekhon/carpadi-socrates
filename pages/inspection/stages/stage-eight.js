@@ -6,12 +6,19 @@ import {electrical_system_two, road_test_findings_one} from '../../../src/utils/
 import Drawer from '@mui/material/Drawer';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import { useRouter } from 'next/router';
 
-export default function StageSeven() {
+
+
+export default function StageEight() {
+    const router = useRouter();
     const [roadTest, setRoadTest] = useState(road_test_findings_one)
     const [electricSystemTwo, setElectricSystemTwo] = useState(electrical_system_two)
     const [selectedBox, setSelectedBox] = useState(null);
     const [open, setOpen] = useState(false);
+    const [selectedElectricId, setSelectedElectricId] = useState(null);
+    const [selectedRoadId, setSelectedRoadId] = useState(null);
+
 
     useEffect(() => {
         setRoadTest(roadTest)
@@ -26,6 +33,18 @@ export default function StageSeven() {
     //click function that opens the drawer
     function handleOpen() {
         setOpen(!open);
+    }
+
+    //this function display the previous button for each car part
+    function displayPreview(id){
+        // if the part id is not equal to selectedid, then set the value to current id
+        setSelectedElectricId(id !== selectedElectricId ? id : null)
+    }
+
+    //this function display the previous button for each car part
+    function displayPreviewTwo(id){
+        // if the part id is not equal to selectedid, then set the value to current id
+        setSelectedRoadId(id !== selectedRoadId ? id : null)
     }
 
 
@@ -51,16 +70,28 @@ export default function StageSeven() {
             <div className="small fw-bold">Electrical System</div>
                 {
                     electricSystemTwo.map((carElectric) => (
-                        <Grid key={carElectric.id} container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
-                        <Grid item xs={8}>
-                            <Typography sx={{fontWeight: 400, fontSize: "16px",}}>{carElectric.name}</Typography>
-                        </Grid>
-                        <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                        <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
-                        <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
-                        <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
-                        </Grid>
-                    </Grid>
+                        <div key={carElectric.id}>
+                            <Grid container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                                <Grid item xs={8}>
+                                    <Typography onClick={() => displayPreview(carElectric.id)} sx={{fontWeight: 400, fontSize: "16px", cursor: 'pointer'}}>
+                                        {carElectric.name}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
+                                <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
+                                <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
+                                <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
+                                </Grid>
+                            </Grid>
+                            <Grid container sx={{display: `${selectedElectricId === carElectric.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                                <Grid item xs={8}>
+                                        <Typography sx={{fontWeight: 400, fontSize: "16px",}}>IMG-0238377</Typography>
+                                    </Grid>
+                                <Grid item xs={4} sx={{ml: 0, display:'flex', alignItems:'center', justifyContent: 'flex-end'}}>
+                                <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{color: '#243773', fontSize:'12px',fontWeight:600, cursor: 'pointer'}}>Preview</Box>
+                                </Grid>
+                            </Grid>
+                        </div>
                     ))
                 }
              </div>
@@ -68,16 +99,26 @@ export default function StageSeven() {
                 <div className="small fw-bold">Road Test Findings</div>
                     {
                         roadTest.map((carRoadTest) => (
-                            <Grid key={carRoadTest.id} container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
-                            <Grid item xs={8}>
-                                <Typography sx={{fontWeight: 400, fontSize: "16px",}}>{carRoadTest.name}</Typography>
-                            </Grid>
-                            <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                            <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
-                            <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
-                            <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
-                            </Grid>
-                        </Grid>
+                            <div key={carRoadTest.id}>
+                                <Grid container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                                    <Grid item xs={8}>
+                                        <Typography onClick={() => displayPreviewTwo(carRoadTest.id)} sx={{fontWeight: 400, fontSize: "16px", cursor: 'pointer'}}>{carRoadTest.name}</Typography>
+                                    </Grid>
+                                    <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
+                                    <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
+                                    <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
+                                    <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
+                                    </Grid>
+                                </Grid>
+                                <Grid container sx={{display: `${selectedRoadId === carRoadTest.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                                    <Grid item xs={8}>
+                                            <Typography sx={{fontWeight: 400, fontSize: "16px",}}>IMG-0238377</Typography>
+                                        </Grid>
+                                    <Grid item xs={4} sx={{ml: 0, display:'flex', alignItems:'center', justifyContent: 'flex-end'}}>
+                                    <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{color: '#243773', fontSize:'12px',fontWeight:600, cursor: 'pointer'}}>Preview</Box>
+                                    </Grid>
+                                </Grid>
+                            </div>
                         ))
                     }
                     
@@ -86,20 +127,20 @@ export default function StageSeven() {
                 <div className="mt-5 mb-4" style={{width: '100%'}}>
                     <div className="row">
                         <div className="col-5 px-1">
-                            <Button href='/inspection/stages/stage-seven' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                            <Button onClick={() => router.back()} variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                 Back
                             </Button>
                         </div>
 
                         <div className="col-7">
-                            <Button href='/inspection/stages/stage-nine' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
-                                color: '#fff',
-                              },}}>
+                            <Button onClick={() => router.push('/inspection/stages/stage-nine')} variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                                    color: '#fff',
+                                },}}>
                                 Save & Continue
                             </Button>
                         </div>
-                    </div>
                 </div>
+            </div>
 
                 <Drawer anchor={"bottom"} open={open} 
                         onClose={() => setOpen(false)}>
@@ -107,9 +148,9 @@ export default function StageSeven() {
                         <div className="small fw-bold pb-5">Add image </div>
                         <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
                             <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                                <Button href='/inspection/stages/upload-image' variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
-                                    <CloudUploadOutlinedIcon/>
-                                </Button>
+                            <Button onClick={() => router.push('/inspection/stages/upload-image')} variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                                <CloudUploadOutlinedIcon/>
+                            </Button>
                                 <Typography sx={{fontWeight: 500}}>Upload Image</Typography>
                             </div>
 

@@ -3,8 +3,13 @@ import TopNavBar from "../../src/components/TopNavBar";
 import InspectionLayout from "../../src/layouts/InspectionLayout";
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import {Box, Typography, Button} from "@mui/material";
+import { useRouter } from "next/router";
 
 export default function AccountIndex() {
+    const router = useRouter();
+
+
+    
     return(
         <InspectionLayout activeNav={3} title="inspection account page" backgroundColor={'#000'} topbar={<TopNavBar text="Account Details"/>}>
                 <div>
@@ -48,7 +53,7 @@ export default function AccountIndex() {
                             </div>
                             <div className="d-flex my-4">
                                 <div className="flex-grow-1 small text-black-50">Phone Number</div>
-                                <div className="fw-bold small"><Box component="a" href="/account/update-number">+234 0123456789</Box></div>
+                                <div className="fw-bold small"><Box component="a" sx={{cursor: 'pointer'}} onClick={() => router.push("/account/update-number")}>+234 0123456789</Box></div>
                             </div>
                             <div className="d-flex my-4">
                                 <div className="flex-grow-1 small text-black-50">Email Address</div>
@@ -62,7 +67,7 @@ export default function AccountIndex() {
                     </div>
                     <div className="px-4" style={{width: '100%'}}>
                     <Button
-                        href={`/account/edit`}
+                        onClick={() => router.push(`/account/edit`)}
                         variant="contained"
                         fullWidth
                         sx={{
@@ -74,7 +79,7 @@ export default function AccountIndex() {
                         }}>
                         Edit Profile
                     </Button>
-                    <Button href="/password/pwd-update"sx={{textTransform: "capitalize", fontSize: 13.5}}>
+                    <Button onClick={() => router.push(`/password/pwd-update`)} sx={{textTransform: "capitalize", fontSize: 13.5}}>
                             Forgot your password?
                     </Button>
                 </div>

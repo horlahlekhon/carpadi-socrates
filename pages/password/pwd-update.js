@@ -55,6 +55,7 @@ export default function PasswordUpdate() {
                                             onClick={handleCurrentPasswordIconClick}
                                             onMouseDown={handleCurrentPasswordIconClick}
                                             edge="end"
+                                            sx={{color:"#56A0D7"}}
                                         >
                                             {showCurrentPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                         </IconButton>
@@ -78,8 +79,9 @@ export default function PasswordUpdate() {
                                             onClick={handlePasswordIconClick}
                                             onMouseDown={handlePasswordIconClick}
                                             edge="end"
+                                            sx={{color:"#56A0D7"}}
                                         >
-                                            {showPassword ? <VisibilityOffIcon  sx={{color:"#56A0D7"}}/> : <VisibilityIcon  sx={{color:"#56A0D7"}}/>}
+                                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -101,8 +103,9 @@ export default function PasswordUpdate() {
                                             onClick={handleConfirmPasswordIconClick}
                                             onMouseDown={handleConfirmPasswordIconClick}
                                             edge="end"
+                                            sx={{color:"#56A0D7"}}
                                         >
-                                            {showConfirmPassword ? <VisibilityOffIcon  sx={{color:"#56A0D7"}}/> : <VisibilityIcon  sx={{color:"#56A0D7"}}/>}
+                                            {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -113,8 +116,8 @@ export default function PasswordUpdate() {
                         <Box
                             component="a"
                             variant="caption"
-                            href="/password/reset"
-                            sx={{pl: 0.5, textDecoration: "none",}}
+                            onClick={() => router.push('/password/reset')}
+                            sx={{pl: 0.5, textDecoration: "none", cursor:'pointer'}}
                         >
                             Reset Now
                         </Box>

@@ -4,12 +4,14 @@ import {Box, Typography, Button,Grid, TextField} from "@mui/material";
 import SubNavBar from '../../src/components/SubNavBar';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useRouter } from 'next/router';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export default function InspectionPreview() {
+  const router = useRouter();
 
     const data = {
         datasets: [
@@ -94,13 +96,13 @@ export default function InspectionPreview() {
             <div className="mt-5 mb-4" style={{width: '100%'}}>
                     <div className="row">
                         <div className="col-5 px-1">
-                            <Button href='/home' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                            <Button onClick={() => router.back()} variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                 Back
                             </Button>
                         </div>
 
                         <div className="col-7">
-                            <Button href='/inspection/stages/stage-three' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                            <Button onClick={() => router.push('/inspection/stages/stage-three')}  variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
                                 color: '#fff',
                               },}}>
                                 Next

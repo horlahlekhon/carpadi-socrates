@@ -115,7 +115,7 @@ export const notifications = [
     },
     {
         id: 6,
-        date: "June 12",
+        date: "June \n 12",
         car: "Peugeot 2009",
         location: "Lorem ipsum dolor sit amet"
     },

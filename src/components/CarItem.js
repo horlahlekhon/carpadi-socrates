@@ -2,8 +2,12 @@ import React from "react";
 import {Grid, Box, Typography, Button} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useRouter } from "next/router";
 
-export default function CarItem({link, image_url, model, address, date, button_text}) {
+export default function CarItem({carLink, image_url, model, address, date, button_text}) {
+    
+    const router = useRouter();
+
     return(
         <Grid container spacing={1}>
             <Grid item xs={5} sx={{display: "flex", alignItems: "center"}}>
@@ -20,14 +24,14 @@ export default function CarItem({link, image_url, model, address, date, button_t
                         <CalendarMonthIcon/>
                         <Typography variant="body2" sx={{height: "inherit", alignSelf: "center", ml: 1,fontFamily: "Poppins, sans-serif"}}>{date}</Typography>
                     </Box>
-                    <Button href={link} variant="contained" fullWidth 
+                    <Button onClick={() => router.push(`${carLink}`)} variant="contained" fullWidth 
                     sx={{mt: 1,
                          textTransform: 'capitalize',
                          fontFamily: "Poppins, sans-serif", 
                          '&:hover': { color: '#fff',}
                          }}>
                             {button_text}
-                        </Button>
+                     </Button>
                 </Box>
             </Grid>
         </Grid>

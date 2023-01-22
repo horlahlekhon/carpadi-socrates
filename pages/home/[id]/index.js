@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 export default function CarDetail() {
     const router = useRouter();
     const id = router.query.id;
+
     return (
         <MobileLayout title='yet to be inspected' backgroundColor='#000'>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
@@ -47,7 +48,7 @@ export default function CarDetail() {
                 </div>
                 <div className="px-4 my-5" style={{width: '100%'}}>
                     <Button
-                        href={`/home/${id}/continue`}
+                        onClick={() => router.push(`/home/${id}/continue`)}
                         variant="contained"
                         fullWidth
                         sx={{

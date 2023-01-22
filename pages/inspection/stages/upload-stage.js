@@ -6,10 +6,12 @@ import {exterior} from '../../../src/utils/temp-data'
 import Drawer from '@mui/material/Drawer';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import { useRouter } from 'next/router';
 
 
 
 export default function UploadStage() {
+    const router = useRouter();
     const [ext, setExt] = useState(exterior)
     const [open, setOpen] = useState(false);
 
@@ -67,13 +69,13 @@ export default function UploadStage() {
              <div className="mb-4" style={{width: '100%'}}>
                    <div className="row">
                        <div className="col-5 px-1">
-                           <Button href='/inspection/stages/upload-image' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                           <Button onClick={() => router.back()} variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                Back
                            </Button>
                        </div>
 
                        <div className="col-7">
-                           <Button href='' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                           <Button variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
                                 color: '#fff',
                               },}}>
                                Save
@@ -87,7 +89,7 @@ export default function UploadStage() {
                     <div className="small fw-bold pb-5">Add image </div>
                     <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
                         <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                            <Button href='/inspection/stages/upload-stage' variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                            <Button onClick={() => router.push('/inspection/stages/upload-stage')} variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
                                 <CloudUploadOutlinedIcon/>
                             </Button>
                             <Typography sx={{fontWeight: 500}}>Upload Image</Typography>

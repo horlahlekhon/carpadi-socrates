@@ -3,8 +3,11 @@ import MobileLayout from "../../../src/layouts/MobileLayout";
 import {Box, Typography, Button,Grid, TextField} from "@mui/material";
 import SubNavBar from '../../../src/components/SubNavBar';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { useRouter } from 'next/router';
 
 export default function StageTwo() {
+    const router = useRouter();
+
   return (
     <MobileLayout title="Inspection Stage 2" backgroundColor={'#000'}>
     <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
@@ -44,13 +47,13 @@ export default function StageTwo() {
         <div className="mt-5 mb-4" style={{width: '100%'}}>
                    <div className="row">
                        <div className="col-5 px-1">
-                           <Button href='/inspection/stages' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                           <Button onClick={() => router.back()} variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                Back
                            </Button>
                        </div>
 
                        <div className="col-7">
-                           <Button href='/inspection/stages/stage-three' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                           <Button onClick={() => router.push('/inspection/stages/stage-three')} variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
                                 color: '#fff',
                               },}}>
                                Save & Continue

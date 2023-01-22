@@ -5,9 +5,11 @@ import {
     Typography,
     Button
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 
 export default function InspectionComplete() {
+    const router = useRouter();
 
 
     return (
@@ -43,7 +45,7 @@ export default function InspectionComplete() {
                         <Button
                             variant="outlined"
                             fullWidth
-                            href={'/home'}
+                            onClick={() => router.push('/home')}
                             sx={{py: 1,fontSize:12, mb: 2, textTransform: "none", borderRadius: 3}}>
                             Back to Homepage
                         </Button>
@@ -61,7 +63,7 @@ export default function InspectionComplete() {
                         <Button
                             variant="contained"
                             fullWidth
-                            href={'/inspection/preview'}
+                            onClick={() => router.push('/inspection/preview')}
                             sx={{py: 1, mb: 2, fontSize:12, textTransform: "none", borderRadius: 3, '&:hover': { color: '#fff',}}}>
                             Preview
                         </Button>

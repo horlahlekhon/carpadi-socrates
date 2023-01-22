@@ -1,9 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
     Box,
     Typography,
-    InputAdornment,
-    IconButton,
     Input,
     FormControl,
     InputLabel,
@@ -12,11 +10,13 @@ import {
 } from "@mui/material";
 import MobileLayout from "../../src/layouts/MobileLayout";
 import SubNavBar from "../../src/components/SubNavBar";
-import Form from "react-bootstrap/Form";
 import NativeSelect from '@mui/material/NativeSelect';
+import { useRouter } from 'next/router';
 
 
 export default function UpdateNumber() {
+
+    const router = useRouter();
 
     return (
         <MobileLayout title='update number' backgroundColor='#000'>
@@ -92,7 +92,7 @@ export default function UpdateNumber() {
                                     width: "100%",
                                 }}>
                                 <Button
-                                    href="/account/verify-number"
+                                    onClick={() => router.push("/account/verify-number")}
                                     variant="contained"
                                     fullWidth
                                     sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3, "&:hover": {
@@ -100,7 +100,7 @@ export default function UpdateNumber() {
                                     }}}>
                                     Proceed
                                 </Button>
-                                <Button href='./' variant="text" sx={{color: "#56A0D7", textTransform: 'capitalize', fontWeight: 500,fontSize: "16px"}}>Discard</Button>
+                                <Button  onClick={() => router.back()} variant="text" sx={{color: "#56A0D7", textTransform: 'capitalize', fontWeight: 500,fontSize: "16px"}}>Discard</Button>
                             </Box>
                      </div>
                 </Box>

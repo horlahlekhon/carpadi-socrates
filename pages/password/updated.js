@@ -55,7 +55,7 @@ export default function Updated() {
                         <Button
                             variant="contained"
                             fullWidth
-                            href={'/login'}
+                            onClick={() => router.push('/login')}
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3, '&:hover': { color: '#fff',}}}>
                             Log In
                         </Button>

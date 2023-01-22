@@ -6,12 +6,18 @@ import {under_body, under_hood_one} from '../../../src/utils/temp-data'
 import Drawer from '@mui/material/Drawer';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import { useRouter } from 'next/router';
 
 export default function StageFive() {
+    const router = useRouter();
     const [underBody, setUnderBody] = useState(under_body)
     const [underHoodOne, setUnderHoodOne] = useState(under_hood_one)
     const [selectedBox, setSelectedBox] = useState(null);
     const [open, setOpen] = useState(false);
+    const [selectedBodyId, setSelectedBodyId] = useState(null);
+    const [selectedHoodId, setSelectedHoodId] = useState(null);
+
+
 
     useEffect(() => {
         setUnderBody(underBody)
@@ -28,6 +34,19 @@ export default function StageFive() {
         setOpen(!open);
     }
 
+
+    //this function display the previous button for each car part
+    function displayPreview(id){
+        // if the part id is not equal to selectedid, then set the value to current id
+        setSelectedBodyId(id !== selectedBodyId ? id : null)
+    }
+
+    //this function display the previous button for each car part
+    function displayPreviewTwo(id){
+        // if the part id is not equal to selectedid, then set the value to current id
+        setSelectedHoodId(id !== selectedHoodId ? id : null)
+    }
+    
 
 
 
@@ -51,9 +70,10 @@ export default function StageFive() {
             <div className="small fw-bold">Underbody </div>
                 {
                     underBody.map((carBody) => (
-                        <Grid key={carBody.id} container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                        <div key={carBody.id}>
+                        <Grid container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
                         <Grid item xs={8}>
-                            <Typography sx={{fontWeight: 400, fontSize: "16px",}}>{carBody.name}</Typography>
+                            <Typography onClick={() => displayPreview(carBody.id)} sx={{fontWeight: 400, fontSize: "16px", cursor:'pointer'}}>{carBody.name}</Typography>
                         </Grid>
                         <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
                         <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
@@ -61,6 +81,15 @@ export default function StageFive() {
                         <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
                         </Grid>
                     </Grid>
+                    <Grid container sx={{display: `${selectedBodyId === carBody.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                        <Grid item xs={8}>
+                                <Typography sx={{fontWeight: 400, fontSize: "16px",}}>IMG-0238377</Typography>
+                            </Grid>
+                        <Grid item xs={4} sx={{ml: 0, display:'flex', alignItems:'center', justifyContent: 'flex-end'}}>
+                        <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{color: '#243773', fontSize:'12px',fontWeight:600, cursor: 'pointer'}}>Preview</Box>
+                        </Grid>
+                    </Grid>
+                    </div>
                     ))
                 }
              </div>
@@ -68,9 +97,10 @@ export default function StageFive() {
                 <div className="small fw-bold">Underhood</div>
                     {
                         underHoodOne.map((carHood) => (
-                            <Grid key={carHood.id} container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                            <div key={carHood.id}>
+                            <Grid container sx={{mt: 2, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
                             <Grid item xs={8}>
-                                <Typography sx={{fontWeight: 400, fontSize: "16px",}}>{carHood.name}</Typography>
+                                <Typography onClick={() => displayPreviewTwo(carHood.id)} sx={{fontWeight: 400, fontSize: "16px", cursor:'pointer'}}>{carHood.name}</Typography>
                             </Grid>
                             <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
                             <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
@@ -78,6 +108,15 @@ export default function StageFive() {
                             <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
                             </Grid>
                         </Grid>
+                        <Grid container sx={{display: `${selectedHoodId === carHood.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
+                            <Grid item xs={8}>
+                                    <Typography sx={{fontWeight: 400, fontSize: "16px",}}>IMG-0238377</Typography>
+                                </Grid>
+                            <Grid item xs={4} sx={{ml: 0, display:'flex', alignItems:'center', justifyContent: 'flex-end'}}>
+                            <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{color: '#243773', fontSize:'12px',fontWeight:600, cursor: 'pointer'}}>Preview</Box>
+                            </Grid>
+                        </Grid>
+                        </div>
                         ))
                     }
                     
@@ -86,13 +125,13 @@ export default function StageFive() {
                 <div className="mt-5 mb-4" style={{width: '100%'}}>
                     <div className="row">
                         <div className="col-5 px-1">
-                            <Button href='/inspection/stages/stage-four' variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                            <Button onClick={() => router.back()} variant="outlined" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
                                 Back
                             </Button>
                         </div>
 
                         <div className="col-7">
-                            <Button href='/inspection/stages/stage-six' variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                            <Button onClick={() => router.push('/inspection/stages/stage-six')} variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
                                 color: '#fff',
                               },}}>
                                 Save & Continue
@@ -107,9 +146,9 @@ export default function StageFive() {
                         <div className="small fw-bold pb-5">Add image </div>
                         <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
                             <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                                <Button href='/inspection/stages/upload-image' variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
-                                    <CloudUploadOutlinedIcon/>
-                                </Button>
+                            <Button onClick={() => router.push('/inspection/stages/upload-image')} variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                                <CloudUploadOutlinedIcon/>
+                            </Button>
                                 <Typography sx={{fontWeight: 500}}>Upload Image</Typography>
                             </div>
 

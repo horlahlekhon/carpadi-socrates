@@ -20,7 +20,7 @@ export default function InspectionIndex() {
                 {
                     cars.map(item => (
                         <div className="mb-4" key={Math.random()}>
-                            <CarItem link={`/inspection/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text='View Details' />
+                            <CarItem carLink={`/inspection/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text='View Details' />
                         </div>
                     ))
                 }
