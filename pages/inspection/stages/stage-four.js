@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react'
 import MobileLayout from "../../../src/layouts/MobileLayout";
 import {Box, Typography, Button,Grid, TextField} from "@mui/material";
 import SubNavBar from '../../../src/components/SubNavBar';
+import Boxes from '../../../src/components/Boxes';
 import {glass, tyres_and_wheels} from '../../../src/utils/temp-data'
-import Drawer from '@mui/material/Drawer';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import { useRouter } from 'next/router';
 
 export default function StageFour() {
     const router = useRouter();
     const [gl, setGl] = useState(glass)
     const [tw, setTw] = useState(tyres_and_wheels)
-    const [selectedBox, setSelectedBox] = useState(null);
-    const [open, setOpen] = useState(false);
     const [selectedGlId, setSelectedGlId] = useState(null);
     const [selectedTwId, setSelectedTwId] = useState(null);
 
@@ -21,16 +17,6 @@ export default function StageFour() {
         setGl(gl)
         setTw(tw)
       }, [gl, tw])
-
-
-    const handleClick = (box) => {
-        setSelectedBox(box);
-      };
-
-    //click function that opens the drawer
-    function handleOpen() {
-        setOpen(!open);
-    }
 
     
     //this function display the previous button for each car part
@@ -59,7 +45,7 @@ export default function StageFour() {
                     <Typography sx={{fontWeight: '500', fontSize: '14px', color: '#F93232'}}>P=Poor</Typography>
                 </Grid>
                     <Grid item xs={3}>
-                    <Button onClick={handleOpen} sx={{mt:2, color: "#243773", fontWeight: 500, fontSize: '12px'}}>Add Image  +</Button>
+                    <Button onClick={() => router.push('/inspection/stages/upload-image')} sx={{mt:2, color: "#243773", fontWeight: 500, fontSize: '12px'}}>Add Image  +</Button>
                     </Grid>
                 </Grid>
         
@@ -72,20 +58,11 @@ export default function StageFour() {
                             <Grid item xs={8}>
                                 <Typography onClick={() => displayPreview(carGlass.id)} sx={{fontWeight: 400, fontSize: "16px", cursor: 'pointer'}}>{carGlass.name}</Typography>
                             </Grid>
-                            <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                            <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
-                            <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
-                            <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
-                            </Grid>
+                            <Boxes />   
                         </Grid>
-                        <Grid container sx={{display: `${selectedGlId === carGlass.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
-                            <Grid item xs={8}>
-                                    <Typography sx={{fontWeight: 400, fontSize: "16px",}}>IMG-0238377</Typography>
-                                </Grid>
-                            <Grid item xs={4} sx={{ml: 0, display:'flex', alignItems:'center', justifyContent: 'flex-end'}}>
-                            <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{color: '#243773', fontSize:'12px',fontWeight:600, cursor: 'pointer'}}>Preview</Box>
-                            </Grid>
-                        </Grid>
+                        <Box item xs={4} sx={{ display: `${selectedGlId === carGlass.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px', alignItems: 'center', justifyContent: 'flex-end' }} >
+                            <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{ color: '#243773', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>Preview</Box>
+                        </Box>
                     </div>
                     
                     ))
@@ -100,20 +77,11 @@ export default function StageFour() {
                                 <Grid item xs={8}>
                                     <Typography onClick={() => displayPreviewTwo(carTyresAndWheels.id)} sx={{fontWeight: 400, fontSize: "16px", cursor: 'pointer'}}>{carTyresAndWheels.name}</Typography>
                                 </Grid>
-                            <Grid item xs={4} sx={{ml: 0, display:'flex', gap: 1, justifyContent: 'flex-end'}}>
-                                <Box onClick={() => handleClick('box1')} sx={{width: 21, textAlign:'center', color: '#BCFFDB', background:'#439F6E',opacity: `${selectedBox === 'box1' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>G</Box>
-                                <Box onClick={() => handleClick('box2')} sx={{width: 21, textAlign:'center', color: '#FFEBA5', background:'#FFB82E',opacity: `${selectedBox === 'box2' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>F</Box>
-                                <Box onClick={() => handleClick('box3')} sx={{width: 21, textAlign:'center', color: '#FFC1C1;', background: '#F93232',opacity: `${selectedBox === 'box3' ? '1' : '0.2'}`,borderRadius: '2px', cursor: 'pointer'}}>P</Box>
-                            </Grid>
+                                <Boxes />     
                         </Grid>
-                        <Grid container sx={{display: `${selectedTwId === carTyresAndWheels.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px'}}>
-                            <Grid item xs={8}>
-                                    <Typography sx={{fontWeight: 400, fontSize: "16px",}}>IMG-0238377</Typography>
-                                </Grid>
-                            <Grid item xs={4} sx={{ml: 0, display:'flex', alignItems:'center', justifyContent: 'flex-end'}}>
-                                <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{color: '#243773', fontSize:'12px',fontWeight:600, cursor: 'pointer'}}>Preview</Box>
-                            </Grid>
-                        </Grid>
+                        <Box item xs={4} sx={{ display: `${selectedTwId === carTyresAndWheels.id ? 'flex' : 'none'}`, boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.16)', padding: '8px', alignItems: 'center', justifyContent: 'flex-end' }} >
+                            <Box onClick={() => router.push('/inspection/stages/upload-stage')} sx={{ color: '#243773', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>Preview</Box>
+                        </Box>
                         </div>
                         ))
                     }
@@ -138,27 +106,6 @@ export default function StageFour() {
                     </div>
                 </div>
 
-                <Drawer anchor={"bottom"} open={open} 
-                        onClose={() => setOpen(false)}>
-                        <div className='p-4'>
-                        <div className="small fw-bold pb-5">Add image </div>
-                        <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
-                            <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                            <Button onClick={() => router.push('/inspection/stages/upload-image')} variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
-                                <CloudUploadOutlinedIcon/>
-                            </Button>
-                                <Typography sx={{fontWeight: 500}}>Upload Image</Typography>
-                            </div>
-
-                            <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                                <Button variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
-                                    <AddAPhotoOutlinedIcon/>
-                                </Button>
-                                <Typography sx={{fontWeight: 500}}>Take Photo</Typography>
-                            </div>
-                        </Box>
-                        </div>
-                    </Drawer>
        </div>
    </Box>
 </MobileLayout>

@@ -40,6 +40,7 @@ export default function Login() {
                         Carpadi
                     </Typography>
                 </div>
+                <form autoComplete='on'>
                 <div className="mx-4" style={{marginTop: 130}}>
                     <FormControl variant="standard" fullWidth>
                         <InputLabel htmlFor="login-email">Email Address</InputLabel>
@@ -56,6 +57,7 @@ export default function Login() {
                         <Input
                             id="login-password"
                             fullWidth
+                            autoComplete='on'
                             type={showPassword ? 'text' : 'password'}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -115,6 +117,7 @@ export default function Login() {
                         </Typography> */}
                     </Box>
                 </div>
+                </form>
             </Box>
         </MobileLayout>
     )

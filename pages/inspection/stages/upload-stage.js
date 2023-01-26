@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 
 
 export default function UploadStage() {
+    let inputRef;
     const router = useRouter();
     const [ext, setExt] = useState(exterior)
     const [open, setOpen] = useState(false);
@@ -33,8 +34,8 @@ export default function UploadStage() {
     <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
       <SubNavBar header='Inspection Stage'/>
      <div className='px-4'>
-     <div style={{height: "90vh"}}>
-       
+     <div>
+     <input type="file" ref={refParam => inputRef = refParam} hidden={true}/>
        <div className="py-3">
             <div className="small fw-bold mb-1">Upload Stage</div>
             <img src="/images/sample/car-detail_big.png" alt="upload" style={{width: '100%'}} />
@@ -89,9 +90,9 @@ export default function UploadStage() {
                     <div className="small fw-bold pb-5">Add image </div>
                     <Box sx={{display:'flex', alignItems:'center', justifyContent:'center', gap:'100px', my: 9 }}>
                         <div style={{display:'flex', flexDirection:'column', alignItems:'center' }}>
-                            <Button onClick={() => router.push('/inspection/stages/upload-stage')} variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
-                                <CloudUploadOutlinedIcon/>
-                            </Button>
+                            <Button onClick={() => inputRef.click()} variant="contained" sx={{display:'flex',mb:1, minWidth:0, borderRadius: '50%', height: '40px',width: '40px'}}>
+                                    <CloudUploadOutlinedIcon/>
+                                </Button>
                             <Typography sx={{fontWeight: 500}}>Upload Image</Typography>
                         </div>
 

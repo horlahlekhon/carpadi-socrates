@@ -44,6 +44,7 @@ export default function Reset() {
                             </Typography>
                         </div>
 
+                       
                         <FormControl sx={{ mt: 2}} variant="standard" fullWidth>
                             <InputLabel htmlFor="new-password">New Password</InputLabel>
                             <Input
