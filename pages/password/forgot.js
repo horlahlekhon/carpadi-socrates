@@ -41,6 +41,7 @@ export default function ForgotPassword() {
                             fullWidth
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            autoComplete='on'
                         />
                     </FormControl>
 

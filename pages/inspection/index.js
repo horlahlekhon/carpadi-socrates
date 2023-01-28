@@ -10,16 +10,17 @@ export default function InspectionIndex() {
     useEffect(() => {
         setCars(cars);
     }, [cars]);
+    
     return(
-        <InspectionLayout title="inspection home page" backgroundColor={'#000'} topbar={<TopNavBar/>}>
+        <InspectionLayout activeNav={1} title="inspection home page" backgroundColor={'#000'} topbar={<TopNavBar/>}>
             <div className="p-2">
                 <div className="small fw-bold">Inspected</div>
             </div>
             <div className="px-3 py-2">
                 {
                     cars.map(item => (
-                        <div className="mb-1" key={Math.random()}>
-                            <CarItem link={`/inspection/${item.id}`} image_url={item.image} address={item.description} make={item.make} date={item.date} />
+                        <div className="mb-4" key={Math.random()}>
+                            <CarItem carLink={`/inspection/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text='View Details' />
                         </div>
                     ))
                 }

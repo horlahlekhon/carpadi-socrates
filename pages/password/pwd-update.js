@@ -3,21 +3,27 @@ import MobileLayout from "../../src/layouts/MobileLayout";
 import {
     Box,
     Typography,
-    Button, InputLabel, Input, InputAdornment, IconButton, FormControl
+    Button, InputLabel, Input, InputAdornment, IconButton, FormControl, Link
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useRouter} from "next/router";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import SubNavBar from "../../src/components/SubNavBar";
 
-export default function Reset() {
+export default function PasswordUpdate() {
 
     const router = useRouter();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [currentPassword, setCurrentPassword] = useState('');
+    
+    
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    const handleCurrentPasswordIconClick = () => setShowCurrentPassword(!showCurrentPassword);
     const handlePasswordIconClick = () => setShowPassword(!showPassword);
     const handleConfirmPasswordIconClick = () => setShowConfirmPassword(!showConfirmPassword);
 
@@ -28,23 +34,36 @@ export default function Reset() {
 
 
     return (
-        <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
+        <MobileLayout title="Update Password" backgroundColor={'#000'}>
+           
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
-                <div style={{height: "85vh"}}>
-                    <div className="d-flex justify-content-start">
-                        <div className="m-2">
-                            <ArrowBackIcon onClick={() => router.back()}/>
-                        </div>
-                    </div>
+              <SubNavBar header='Update password'/>
+                    <div className="mx-4" style={{marginTop: 10, height: "80vh"}}>
 
-                    <div className="mx-4" style={{marginTop: 70}}>
-                        <div className="text-center mb-3">
-                            <Typography variant="subtitle1" sx={{mt: 3, fontWeight: "bold", fontSize: "20px"}}>
-                                Reset Password
-                            </Typography>
-                        </div>
+                        <FormControl variant="standard" fullWidth>
+                            <InputLabel htmlFor="current-password">Current Password</InputLabel>
+                            <Input
+                                id="current-password"
+                                fullWidth
+                                type={showCurrentPassword ? 'text' : 'password'}
+                                value={currentPassword}
+                                onChange={(e) => setCurrentPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleCurrentPasswordIconClick}
+                                            onMouseDown={handleCurrentPasswordIconClick}
+                                            edge="end"
+                                            sx={{color:"#56A0D7"}}
+                                        >
+                                            {showCurrentPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
 
-                       
                         <FormControl sx={{ mt: 2}} variant="standard" fullWidth>
                             <InputLabel htmlFor="new-password">New Password</InputLabel>
                             <Input
@@ -62,7 +81,7 @@ export default function Reset() {
                                             edge="end"
                                             sx={{color:"#56A0D7"}}
                                         >
-                                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon/>}
+                                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -86,14 +105,25 @@ export default function Reset() {
                                             edge="end"
                                             sx={{color:"#56A0D7"}}
                                         >
-                                            {showConfirmPassword ? <VisibilityOffIcon  /> : <VisibilityIcon  />}
+                                            {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
                             />
                         </FormControl>
+                        <Typography sx={{textAlign: 'center', mt:5,fontSize: 13.5}}>
+                        Forgot Password?
+                        <Box
+                            component="a"
+                            variant="caption"
+                            onClick={() => router.push('/password/reset')}
+                            sx={{pl: 0.5, textDecoration: "none", cursor:'pointer'}}
+                        >
+                            Reset Now
+                        </Box>
+                        </Typography>
+                        {/* <Typography sx={{textAlign: 'center', mt:5}}>Forogot Password? <Link style={{textDecoration: "none", cursor: "pointer"}} to="/password/reset">Reset Now</Link></Typography> */}
                     </div>
-                </div>
                 <Box
                     component="div"
                     sx={{

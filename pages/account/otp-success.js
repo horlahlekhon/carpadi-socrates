@@ -1,35 +1,29 @@
-import React, {useState} from "react";
+import React from "react";
 import MobileLayout from "../../src/layouts/MobileLayout";
 import {
     Box,
     Typography,
     Button
 } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
-export default function Updated() {
 
+export default function OtpSuccess() {
     const router = useRouter();
 
     return (
-        <MobileLayout title="password updated" backgroundColor={'#000'}>
+        <MobileLayout title="otp success" backgroundColor={'#000'}>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
                 <div style={{height: "85vh"}}>
-                    <div className="d-flex justify-content-start">
-                        <div className="m-2">
-                            <ArrowBackIcon onClick={() => router.back()}/>
-                        </div>
-                    </div>
-
-                    <div className="mx-4 px-4 text-center" style={{marginTop: 70}}>
+                    <div className="d-flex justify-content-start"></div>
+                    <div className="mx-4 px-4 text-center" style={{marginTop: 90}}>
                         <img src="/images/checked.png" alt="checked" style={{height: 80}} />
                         <div className="text-center mb-5">
-                            <Typography variant="subtitle1" sx={{mt: 3, fontWeight: "bold", fontSize: "20px", mx: 2}}>
-                                Password Updated Successfully
+                            <Typography variant="subtitle1" sx={{mt: 3, fontWeight: "bold", fontSize: "20px",}}>
+                               Verification Successful
                             </Typography>
                             <Typography variant="body2" sx={{mt: 1, mx: 0}}>
-                                We’ve successfully updated your password
+                            Your phone number OTP verification was successful
                             </Typography>
                         </div>
                     </div>
@@ -55,9 +49,9 @@ export default function Updated() {
                         <Button
                             variant="contained"
                             fullWidth
-                            onClick={() => router.push('/login')}
+                            onClick={() => router.push("/account")}
                             sx={{py: 1, mb: 2, textTransform: "none", borderRadius: 3, '&:hover': { color: '#fff',}}}>
-                            Log In
+                            Ok
                         </Button>
 
                     </Box>

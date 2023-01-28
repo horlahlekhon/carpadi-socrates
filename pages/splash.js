@@ -20,7 +20,6 @@ export default function Splash() {
                         component="img"
                         src="/images/logo.png"
                         alt="logo"
-                        sx={{ height: 57 }}
                     />
                     <Typography variant="h4" sx={{color: "#fff", ml: 1, textTransform: "uppercase"}}>Carpadi</Typography>
                 </div>

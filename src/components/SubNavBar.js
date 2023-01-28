@@ -20,7 +20,7 @@ export default function SubNavBar({header='home'}) {
                         <ChevronLeftIcon />
                     </IconButton>
                     <Box sx={{flexGrow: 1, textAlign: "center", marginLeft: "-30px"}}>
-                        <Typography variant="h6" component="div">{header}</Typography>
+                        <Typography sx={{fontSize: "16px"}} component="div">{header}</Typography>
                     </Box>
                 </Toolbar>
             </AppBar>

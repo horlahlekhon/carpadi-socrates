@@ -4,8 +4,11 @@ import InspectionLayout from "../../src/layouts/InspectionLayout";
 import CarItem from "../../src/components/CarItem";
 import {Cars} from "../../src/utils/temp-data";
 import TopNavBar from "../../src/components/TopNavBar";
+import { useRouter } from "next/router";
+
 
 export default function HomeIndex() {
+    const router = useRouter();
     const [buttonSelect, setButtonSelect] = useState('new');
     const [cars, setCars] = useState(() => Cars.filter(car => car.type === buttonSelect));
 
@@ -13,12 +16,14 @@ export default function HomeIndex() {
         setButtonSelect(value);
         setCars(() => Cars.filter(car => car.type === value))
     };
+    
     useEffect(() => {
         setCars(cars);
     }, [cars, buttonSelect]);
+
     return(
-       <InspectionLayout title="inspection home page" backgroundColor={'#000'} topbar={<TopNavBar/>}>
-           <div className="p-2">
+       <InspectionLayout activeNav={0} title="inspection home page" backgroundColor={'#000'} topbar={<TopNavBar/>}>
+           <div className="p-2 border-bottom">
                <Grid container spacing={2} sx={{mb: 1}}>
                    <Grid item xs={6}>
                        <Button
@@ -43,7 +48,7 @@ export default function HomeIndex() {
                               textTransform: "none",
                            }}
                        >
-                           Old
+                           Ongoing
                        </Button>
                    </Grid>
                </Grid>
@@ -51,8 +56,8 @@ export default function HomeIndex() {
            <div className="px-3 py-2">
                {
                    cars.map(item => (
-                       <div className="mb-1" key={Math.random()}>
-                           <CarItem link={`/home/${item.id}`} image_url={item.image} address={item.description} make={item.make} date={item.date} />
+                       <div className="mb-4" key={Math.random()}>
+                           <CarItem carLink={`/home/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'View Details'} />
                        </div>
                    ))
                }

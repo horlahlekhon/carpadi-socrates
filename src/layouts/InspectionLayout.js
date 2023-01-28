@@ -5,7 +5,7 @@ import TopNavBar from "../components/TopNavBar";
 import BottomNavBar from "../components/BottomNavBar";
 import {useRouter} from "next/router";
 
-export default function InspectionLayout({children, title="", backgroundColor="#fff", topbar}) {
+export default function InspectionLayout({children, title="", backgroundColor="#fff", topbar, activeNav}) {
     const router = useRouter();
 
     const handleBottomNavigation = (value) => {
@@ -29,7 +29,7 @@ export default function InspectionLayout({children, title="", backgroundColor="#
                 <Box sx={{height: '83vh', overflow: 'scroll', width: '100%',}}>
                     {children}
                 </Box>
-                <BottomNavBar onBottomNavItemClick={handleBottomNavigation}/>
+                <BottomNavBar onBottomNavItemClick={handleBottomNavigation} activeNav={activeNav}/>
             </Box>
         </MobileLayout>
     )

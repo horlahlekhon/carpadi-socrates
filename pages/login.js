@@ -32,7 +32,7 @@ export default function Login() {
         <MobileLayout title="inspection login pages" backgroundColor={'#000'}>
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
                 <div className="d-flex justify-content-center align-items-center" style={{paddingTop:120}}>
-                    <Box component="img" src="/images/logo-inverse.png" sx={{height: 50}}/>
+                    <Box component="img" src="/images/logo-inverse.png"/>
                     <Typography
                         variant="h5"
                         sx={{color: "#243773", ml: 1, textTransform: "uppercase", fontWeight: "bold"}}
@@ -40,6 +40,7 @@ export default function Login() {
                         Carpadi
                     </Typography>
                 </div>
+                <form autoComplete='on'>
                 <div className="mx-4" style={{marginTop: 130}}>
                     <FormControl variant="standard" fullWidth>
                         <InputLabel htmlFor="login-email">Email Address</InputLabel>
@@ -56,6 +57,7 @@ export default function Login() {
                         <Input
                             id="login-password"
                             fullWidth
+                            autoComplete='on'
                             type={showPassword ? 'text' : 'password'}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -73,20 +75,20 @@ export default function Login() {
                             }
                         />
                     </FormControl>
-                    <Box sx={{display: "flex", justifyContent: "start", mt: 2}}>
-                        <Box
+                    <Box sx={{display: "flex", justifyContent: "end", mt: 2}}>
+                        {/* <Box
                             component="a"
                             variant="caption"
-                            href="/"
+                            onClick={() => router.push('/')}
                             sx={{flexGrow: 1, textDecoration: "none", fontSize: 13.5}}
                         >
                             Login with Phone
-                        </Box>
+                        </Box> */}
                         <Box
                             component="a"
-                            ariant="caption"
-                            href="/password/forgot"
-                            sx={{textDecoration: "none", fontSize: 13.5}}
+                            variant="caption"
+                            onClick={() => router.push('/password/forgot')}
+                            sx={{textDecoration: "none", fontSize: 13.5, cursor: 'pointer'}}
                         >
                             Forgot your password?
                         </Box>
@@ -99,6 +101,7 @@ export default function Login() {
                             alignSelf: "baseline",
                             width: "100%",
                             mt: "180px",
+                            mb: 5
                         }}
                     >
                         <Button
@@ -109,11 +112,12 @@ export default function Login() {
                         >
                             Log in
                         </Button>
-                        <Typography variant="body2">Don't have an account?
-                            <span style={{color: "#56A0D7", marginLeft: "5px"}} onClick={navigateToRegister}>Sign Up</span>
-                        </Typography>
+                        {/* <Typography variant="body2">Don't have an account?
+                            <span style={{color: "#56A0D7", marginLeft: "5px", cursor: "pointer"}} onClick={navigateToRegister}>Sign Up</span>
+                        </Typography> */}
                     </Box>
                 </div>
+                </form>
             </Box>
         </MobileLayout>
     )
