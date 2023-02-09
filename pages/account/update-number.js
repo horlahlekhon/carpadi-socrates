@@ -26,7 +26,7 @@ export default function UpdateNumber() {
                     <div style={{marginTop: 20}}>
                       <Typography sx={{fontWeight:500, fontSize: 14 }}>Enter Current Phone Number</Typography>
                         <Grid container sx={{mt: 3}}>
-                                <Grid xs={3} sx={{pr: 1}}>
+                                <Grid item xs={3} sx={{pr: 1}}>
                                     <FormControl fullWidth>
                                         <InputLabel variant="standard" htmlFor="uncontrolled-native">
                                             Country Code
@@ -55,7 +55,7 @@ export default function UpdateNumber() {
                             <div style={{marginTop: 50, height: "50vh"}}>
                                 <Typography sx={{fontWeight:500, fontSize: 14 }}>Enter New Phone Number</Typography>
                                 <Grid container sx={{mt: 3}}>
-                                    <Grid xs={3} sx={{pr: 1}}>
+                                    <Grid item xs={3} sx={{pr: 1}}>
                                         <FormControl fullWidth>
                                             <InputLabel variant="standard" htmlFor="uncontrolled-native">
                                                 Country Code

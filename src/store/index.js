@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import storage from 'redux-persist/lib/storage';
-import storage from "../utils/storage";
+import storage from '../utils/storage'
 import {
     persistReducer,
     persistStore,
@@ -12,6 +12,8 @@ import {
     REGISTER } from 'redux-persist';
 import {combineReducers} from "redux";
 import authReducer from "./reducers/authReducer";
+import stageReducer from "./reducers/stageReducer";
+import boxReducer from "./reducers/boxReducer";
 
 const persistConfig = {
     key: "root",
@@ -21,7 +23,10 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    stage: stageReducer,
+    rating: boxReducer
 });
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

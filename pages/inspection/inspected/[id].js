@@ -1,14 +1,16 @@
 import React from "react";
-import MobileLayout from "../../src/layouts/MobileLayout";
+import InspectionLayout from "../../../src/layouts/InspectionLayout";
 import {Box, Typography, Button} from "@mui/material";
-import SubNavBar from "../../src/components/SubNavBar";
+import SubNavBar from "../../../src/components/SubNavBar";
 
-export default function CarContinue() {
+
+
+export default function Inspected() {
     return (
-        <MobileLayout title='yet to be inspected' backgroundColor='#000'>
+        <InspectionLayout title='inspected' backgroundColor='#000' bodyHeight="90vh">
             <Box sx={{height: "100%", width: "100%", backgroundColor: "#fff"}}>
-                <SubNavBar header='Home'/>
-                <div className="py-2 px-4" style={{height: '84vh'}}>
+                <SubNavBar header='Inspection'/>
+                <div className="py-2 px-4">
                     <Typography variant="body1">View details</Typography>
                     <div className="text-center mt-3 mb-2">
                         <img src='/images/sample/car-detail.png' style={{height: 100, width: 'auto'}} alt="detail_image"/>
@@ -51,13 +53,13 @@ export default function CarContinue() {
                         </div>
 
                         <div className="col-7">
-                            <Button variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12}}>
+                            <Button variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, mb: 5, borderRadius: 2, fontSize: 12}}>
                                 Preview report
                             </Button>
                         </div>
                     </div>
                 </div>
             </Box>
-        </MobileLayout>
+        </InspectionLayout>
     )
 }

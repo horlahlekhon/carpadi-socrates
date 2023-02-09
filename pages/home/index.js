@@ -1,28 +1,90 @@
 import React, {useEffect, useState} from "react";
-import {Button, Grid} from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import InspectionLayout from "../../src/layouts/InspectionLayout";
 import CarItem from "../../src/components/CarItem";
 import {Cars} from "../../src/utils/temp-data";
 import TopNavBar from "../../src/components/TopNavBar";
-import { useRouter } from "next/router";
+
 
 
 export default function HomeIndex() {
-    const router = useRouter();
     const [buttonSelect, setButtonSelect] = useState('new');
-    const [cars, setCars] = useState(() => Cars.filter(car => car.type === buttonSelect));
+    const [cars, setCars] = useState(Cars);
+    const [searching, setSearching] = useState("");
+    const [selected, setSelected] = useState("");
 
+
+    //function that chnages the car list based on selected tab(button)
     const handleButtonSelect = (value) => {
         setButtonSelect(value);
         setCars(() => Cars.filter(car => car.type === value))
     };
+
+
+    //function to search for specific cars from api car list
+    const handleSearch = (e) => {
+        const searchVal = e.target.value;
+
+        //if search value is not a empty string
+        if (searchVal !== ''){
+            //filter the car list based on the user's search input
+            const filteredCars = Cars.filter(car => {
+                return car.model.toLowerCase().includes(searchVal.toLowerCase())
+            })
+            setCars(filteredCars)
+        }
+        //else -> if search value is an empty string, return the whole car list
+        else{
+            setCars(Cars)
+        }
+        setSearching(searchVal)
+    }; 
+
+
+    //function that clears the search input and return full list of cars
+    const clearSearch = () =>{
+        setSearching("");
+        setCars(Cars)
+    }
+
+    //function to return car lsit based on the option user chooses
+    const handleOptionChange = (e) => {
+        const selectedOption = e.target.value;
+
+        //if the selected option is equal to all
+        if (selectedOption.toLowerCase() === 'all'){
+            //return all the cars
+            setCars(Cars)
+        }
+        //else return specific car based on chosen option
+        else{
+            const filterCars = Cars.filter(car => 
+                car.description.toLowerCase().includes(selectedOption.toLowerCase())
+            )
+          
+            setCars(filterCars)
+        }
+        setSelected(selectedOption)
+      };
     
     useEffect(() => {
         setCars(cars);
     }, [cars, buttonSelect]);
 
     return(
-       <InspectionLayout activeNav={0} title="inspection home page" backgroundColor={'#000'} topbar={<TopNavBar/>}>
+        
+       <InspectionLayout activeNav={0} title="inspection home page" backgroundColor={'#000'} 
+       topbar={
+       <TopNavBar 
+       searching={searching} 
+       clear={clearSearch} 
+       handleSearch={handleSearch}
+       selected={selected}
+       handleOptionChange={handleOptionChange}
+       />}
+       bodyHeight="81.5vh"
+       >
+        
            <div className="p-2 border-bottom">
                <Grid container spacing={2} sx={{mb: 1}}>
                    <Grid item xs={6}>
@@ -55,12 +117,18 @@ export default function HomeIndex() {
            </div>
            <div className="px-3 py-2">
                {
-                   cars.map(item => (
-                       <div className="mb-4" key={Math.random()}>
-                           <CarItem carLink={`/home/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'View Details'} />
-                       </div>
-                   ))
-               }
+                 cars && cars.length > 0 ? (
+                    cars.map(item => (
+                        <div className="mb-4" key={Math.random()}>
+                            <CarItem carLink={`/inspection/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'View Details'} />
+                        </div>
+                    ))
+                 ) : ( 
+                    <Typography variant="h6" sx={{mt:5, textAlign:'center' }}>
+                        No cars found
+                        </Typography>
+                 )
+                }
            </div>
        </InspectionLayout>
     )

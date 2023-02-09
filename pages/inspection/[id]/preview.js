@@ -1,10 +1,12 @@
 import React from 'react'
-import MobileLayout from "../../src/layouts/MobileLayout";
-import {Box, Typography, Button,Grid, TextField} from "@mui/material";
-import SubNavBar from '../../src/components/SubNavBar';
+import MobileLayout from "../../../src/layouts/MobileLayout";
+import {Box, Typography, Button,Grid} from "@mui/material";
+import SubNavBar from '../../../src/components/SubNavBar';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useRouter } from 'next/router';
+import { useDispatch } from "react-redux";
+import { gotoStage } from '../../../src/store/reducers/stageReducer';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -12,6 +14,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function InspectionPreview() {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const id = router.query.id;
 
     const data = {
         datasets: [
@@ -102,7 +106,10 @@ export default function InspectionPreview() {
                         </div>
 
                         <div className="col-7">
-                            <Button onClick={() => router.push('/inspection/stages/stage-three')}  variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
+                            <Button onClick={() => {
+                              router.push(`/inspection/${id}/stages`)
+                              dispatch(gotoStage(3))
+                            }}  variant="contained" size="small" fullWidth sx={{textTransform: 'none', py: 1, borderRadius: 2, fontSize: 12,  '&:hover': {
                                 color: '#fff',
                               },}}>
                                 Next

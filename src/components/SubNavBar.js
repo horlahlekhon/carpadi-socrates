@@ -3,7 +3,7 @@ import {Box, IconButton, Toolbar, Typography, AppBar} from "@mui/material";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import {useRouter} from "next/router";
 
-export default function SubNavBar({header='home'}) {
+export default function SubNavBar({header='Home', removeIcon='inline-flex'}) {
     const router = useRouter();
     return(
         <Box sx={{ flexGrow: 1 }}>
@@ -14,12 +14,12 @@ export default function SubNavBar({header='home'}) {
                         edge="start"
                         color="inherit"
                         aria-label="back"
-                        sx={{ mr: 2 }}
+                        sx={{ display: `${removeIcon}` }}
                         onClick={() => router.back()}
                     >
                         <ChevronLeftIcon />
                     </IconButton>
-                    <Box sx={{flexGrow: 1, textAlign: "center", marginLeft: "-30px"}}>
+                    <Box sx={{flexGrow: 1, textAlign: "center"}}>
                         <Typography sx={{fontSize: "16px"}} component="div">{header}</Typography>
                     </Box>
                 </Toolbar>

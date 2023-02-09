@@ -24,7 +24,7 @@ export default function BottomNavBar({onBottomNavItemClick, activeNav}){
                 }}
             >
                 <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-                <BottomNavigationAction label="Inspected" icon={<DirectionsCarIcon />} />
+                <BottomNavigationAction label="Inspection" icon={<DirectionsCarIcon />} />
                 <BottomNavigationAction label="Notifications" icon={<NotificationsIcon />} />
                 <BottomNavigationAction label="Account" icon={<Person3Icon />} />
             </BottomNavigation>

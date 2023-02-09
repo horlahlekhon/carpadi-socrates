@@ -22,6 +22,7 @@ export default function Edit() {
     const router = useRouter();
     const [value, setValue] = useState(dayjs('2014-08-18T21:11:54'));
 
+    //set date value to new value
     const handleChange = (newValue) => {
         setValue(newValue);
     };
@@ -50,7 +51,7 @@ export default function Edit() {
 
 
                         <Grid container sx={{mt: 4}}>
-                            <Grid xs={6} sx={{pr: 1}}>
+                            <Grid item xs={6} sx={{pr: 1}}>
                                 <MobileDatePicker
                                     label="Date Of Birth"
                                     inputFormat="MM/DD/YYYY"
@@ -81,7 +82,7 @@ export default function Edit() {
 
 
                     <Grid container sx={{mt: 4}}>
-                        <Grid xs={3} sx={{pr: 1}}>
+                        <Grid item xs={3} sx={{pr: 1}}>
                             <FormControl fullWidth>
                                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                                     Country Code

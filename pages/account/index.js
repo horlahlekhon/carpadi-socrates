@@ -1,5 +1,5 @@
 import React from "react";
-import TopNavBar from "../../src/components/TopNavBar";
+import SubNavBar from "../../src/components/SubNavBar";
 import InspectionLayout from "../../src/layouts/InspectionLayout";
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import {Box, Typography, Button} from "@mui/material";
@@ -8,10 +8,9 @@ import { useRouter } from "next/router";
 export default function AccountIndex() {
     const router = useRouter();
 
-
-    
     return(
-        <InspectionLayout activeNav={3} title="inspection account page" backgroundColor={'#000'} topbar={<TopNavBar text="Account Details"/>}>
+        <InspectionLayout activeNav={3} title="inspection account page" backgroundColor={'#000'} 
+        topbar={<SubNavBar header="Account Details" removeIcon="none"/>} bodyHeight="81.5vh">
                 <div>
                     <Box sx={{
                         display:"flex",

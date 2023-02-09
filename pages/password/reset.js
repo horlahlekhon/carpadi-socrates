@@ -9,6 +9,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useRouter} from "next/router";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Form } from "react-bootstrap";
 
 export default function Reset() {
 
@@ -44,7 +45,7 @@ export default function Reset() {
                             </Typography>
                         </div>
 
-                       
+                       <Form>
                         <FormControl sx={{ mt: 2}} variant="standard" fullWidth>
                             <InputLabel htmlFor="new-password">New Password</InputLabel>
                             <Input
@@ -92,6 +93,7 @@ export default function Reset() {
                                 }
                             />
                         </FormControl>
+                        </Form>
                     </div>
                 </div>
                 <Box
