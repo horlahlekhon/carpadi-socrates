@@ -1,18 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import InspectionLayout from "../../../../src/layouts/InspectionLayout";
 import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 import SubNavBar from "../../../../src/components/SubNavBar";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { useDispatch } from "react-redux";
 import { nextStage, prevStage } from "../../../../src/store/reducers/stageReducer";
+import { Form } from "react-bootstrap";
 
 export default function StageTwo() {
   const dispatch = useDispatch();
+
+
+  const [formData, setFormData] = useState({
+    bodystyle: '',
+    transmission: '',
+    engine: '',
+    drivetype: '',
+    doorcount: '',
+    exteriorcount: '',
+    interiorcount: '',
+    review: ''
+
+  });
+
+
+  
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+    
+  };
+
+
+  const isFormDataEmpty = () => {
+    return Object.values(formData).some(value => value === '');
+  };
+
+  const isDisabled = isFormDataEmpty()
+
+  const handleSubmit = (event) => {
+      event.preventDefault()
+
+      localStorage.setItem("stageTwoFormData", JSON.stringify(formData));
+      dispatch(nextStage())
+  }
+
+
+  useEffect(() => {
+    const persistedData = localStorage.getItem("stageTwoFormData");
+    if (persistedData !== null) setFormData(JSON.parse(persistedData));
+  }, []);
+ 
 
   return (
     <InspectionLayout title="Inspection Stage 2" backgroundColor={"#000"} bodyHeight="90vh">
       <Box sx={{ height: "100%", width: "100%", backgroundColor: "#fff" }}>
         <SubNavBar header="Inspection Stage 2" />
+        <Form onSubmit={handleSubmit}>
         <div className="px-4">
           <div className="py-2">
             <Grid container sx={{ mt: 2 }}>
@@ -36,7 +82,7 @@ export default function StageTwo() {
                   Exterior Color
                 </Typography>
                 <Typography sx={{ mt: 4, fontWeight: 400, fontSize: "16px" }}>
-                  Interrior Color
+                  Interior Color
                 </Typography>
               </Grid>
               <Grid item xs={7}>
@@ -45,6 +91,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="Sedan"
+                  name="bodystyle"
+                  value={formData.bodystyle}
+                  onChange={handleChange}
                 />
                 <TextField
                   sx={{
@@ -55,6 +104,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="Automatic"
+                  name="transmission"
+                  value={formData.transmission}
+                  onChange={handleChange}
                 />
                 <TextField
                   sx={{
@@ -65,6 +117,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="Type Here"
+                  name="engine"
+                  value={formData.engine}
+                  onChange={handleChange}
                 />
                 <TextField
                   sx={{
@@ -75,6 +130,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="Type Here"
+                  name="drivetype"
+                  value={formData.drivetype}
+                  onChange={handleChange}
                 />
                 <TextField
                   sx={{
@@ -85,6 +143,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="4"
+                  name="doorcount"
+                  value={formData.doorcount}
+                  onChange={handleChange}
                 />
                 <TextField
                   sx={{
@@ -95,6 +156,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="White"
+                  name="exteriorcount"
+                  value={formData.exteriorcount}
+                  onChange={handleChange}
                 />
                 <TextField
                   sx={{
@@ -105,6 +169,9 @@ export default function StageTwo() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="Ash"
+                  name="interiorcount"
+                  value={formData.interiorcount}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -120,6 +187,9 @@ export default function StageTwo() {
             <TextareaAutosize
               aria-label="review"
               placeholder="Type Here"
+              name="review"
+              value={formData.review}
+              onChange={handleChange}
               style={{
                 width: "100%",
                 outline: "0",
@@ -154,9 +224,8 @@ export default function StageTwo() {
 
               <div className="col-7">
                 <Button
-                   onClick={() => {
-                    dispatch(nextStage())
-                  }}
+                   type='submit'
+                   disabled={isDisabled}
                   variant="contained"
                   size="small"
                   fullWidth
@@ -176,6 +245,7 @@ export default function StageTwo() {
             </div>
           </div>
         </div>
+        </Form>
       </Box>
     </InspectionLayout>
   );

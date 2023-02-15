@@ -130,51 +130,63 @@ export const notifications = [
 export const exterior = [
     {
         id:1,
-        name: 'Hood'
+        name: 'Hood',
+        rating: null
     },
     {
         id:2,
-        name: 'Front'
+        name: 'Front',
+        rating: null
     },
     {
         id:3,
-        name: 'Front Bumber'
+        name: 'Front Bumber',
+        rating: null
     },
     {
         id:4,
-        name: 'Fenders'
+        name: 'Fenders',
+        rating: null
     },
     {
         id:5,
-        name: 'Doors'
+        name: 'Doors',
+        rating: null
     },
     {
         id:6,
-        name: 'Roof'
+        name: 'Roof',
+        rating: null
     },
     {
         id:7,
-        name: 'Rear'
+        name: 'Rear',
+        rating: null
     },
     {
         id:8,
-        name: 'Rear Bumber'
+        name: 'Rear Bumber',
+        rating: null
     },
     {
         id:9,
-        name: 'Trunk'
+        name: 'Trunk',
+        rating: null
     },
     {
         id:10,
-        name: 'Trim'
+        name: 'Trim',
+        rating: null
     },
     {
         id:11,
-        name: 'Fuel Door'
+        name: 'Fuel Door',
+        rating: null
     },
     {
         id:12,
-        name: 'Paint Condition'
+        name: 'Paint Condition',
+        rating: null
     },
 ]
 
@@ -182,19 +194,23 @@ export const exterior = [
 export const glass = [
     {
         id:1,
-        name: 'Windshield'
+        name: 'Windshield',
+        rating: null
     },
     {
         id:2,
-        name: 'Windows'
+        name: 'Windows',
+        rating: null
     },
     {
         id:3,
-        name: 'Mirrors'
+        name: 'Mirrors',
+        rating: null
     },
     {
         id:4,
-        name: 'Rear windows'
+        name: 'Rear windows',
+        rating: null
     },
 ]
 
@@ -202,244 +218,283 @@ export const glass = [
 export const tyres_and_wheels = [
     {
         id:1,
-        name: 'Condition of Tyers'
+        name: 'Condition of Tyers',
+        rating: null
     },
     {
         id:2,
-        name: 'Condition of Wheels'
+        name: 'Condition of Wheels',
+        rating: null
     },
     {
         id:3,
-        name: 'Spare Tyer'
+        name: 'Spare Tyer',
+        rating: null
     },
     {
         id:4,
-        name: 'Rear windows'
+        name: 'Rear windows',
+        rating: null
     },
 ]
 
 export const under_body = [
     {
         id:1,
-        name: 'Frame'
+        name: 'Frame',
+        rating: null
     },
     {
         id:2,
-        name: 'Exhaust System'
+        name: 'Exhaust System',
+        rating: null
     },
     {
         id:3,
-        name: 'Transmission'
+        name: 'Transmission',
+        rating: null
     },
     {
         id:4,
-        name: 'Drive Axle'
+        name: 'Drive Axle',
+        rating: null
     },
     {
         id:5,
-        name: 'Suspension'
+        name: 'Suspension',
+        rating: null
     },
     {
         id:6,
-        name: 'Brake System'
+        name: 'Brake System',
+        rating: null
     },
 ]
 
-export const under_hood_one = [
+export const under_hood = [
     {
         id:1,
-        name: 'Engine Compartment'
+        name: 'Engine Compartment',
+        rating: null
     },
     {
         id:2,
-        name: 'Battery'
+        name: 'Battery',
+        rating: null
     },
     {
         id:3,
-        name: 'Oil'
+        name: 'Oil',
+        rating: null
     },
     {
         id:4,
-        name: 'Fluids'
-    },
-]
-
-export const under_hood_two = [
-    {
-        id:1,
-        name: 'Belts'
-    },
-    {
-        id:2,
-        name: 'Hoses'
-    },
-    {
-        id:3,
-        name: 'Any Non-stock Modifications'
-    },
-    {
-        id:4,
-        name: 'Drive Axle'
+        name: 'Fluids',
+        rating: null
     },
     {
         id:5,
-        name: 'Suspension'
+        name: 'Belts',
+        rating: null
     },
     {
         id:6,
-        name: 'Brake System'
-    },
-]
-
-export const interior_one = [
-    {
-        id:1,
-        name: 'Seats'
-    },
-    {
-        id:2,
-        name: 'Headlinder'
-    },
-    {
-        id:3,
-        name: 'Carpet'
-    },
-    {
-        id:4,
-        name: 'Door Panels'
-    },
-    {
-        id:5,
-        name: 'Glove Box'
-    },
-
-]
-
-export const interior_two = [
-    {
-        id:1,
-        name: 'Vanity mirror'
-    },
-    {
-        id:2,
-        name: 'Interior Trim'
-    },
-    {
-        id:3,
-        name: 'Dashboard'
-    },
-    {
-        id:4,
-        name: 'Dashboard Gauges'
-    },
-    {
-        id:5,
-        name: 'Air Conditioning'
-    },
-    {
-        id:6,
-        name: 'Heater'
+        name: 'Hoses',
+        rating: null
     },
     {
         id:7,
-        name: 'Defroster'
-    },
-
-]
-
-
-
-export const electrical_system_one = [
-    {
-        id:1,
-        name: 'Power locks'
-    },
-    {
-        id:2,
-        name: 'Power seats'
-    },
-    {
-        id:3,
-        name: 'Power steering'
-    },
-    {
-        id:4,
-        name: 'Power Windows'
-    },
-
-]
-
-export const electrical_system_two = [
-    {
-        id:1,
-        name: 'Power Mirrors'
-    },
-    {
-        id:2,
-        name: 'Audio System'
-    },
-    {
-        id:3,
-        name: 'Onboard Computer'
-    },
-    {
-        id:4,
-        name: 'Headlights'
-    },
-    {
-        id:5,
-        name: 'Tail lights'
-    },
-    {
-        id:6,
-        name: 'Signal lights'
-    },
-    {
-        id:7,
-        name: 'Breaklights'
+        name: 'Any Non-stock Modifications',
+        rating: null
     },
     {
         id:8,
-        name: 'Parking lights'
-    },
-
-]
-
-export const road_test_findings_one = [
-    {
-        id:1,
-        name: 'Starting'
+        name: 'Drive Axle',
+        rating: null
     },
     {
-        id:2,
-        name: 'Idling'
+        id:9,
+        name: 'Suspension',
+        rating: null
     },
     {
-        id:3,
-        name: 'Engine Performance'
+        id:10,
+        name: 'Brake System',
+        rating: null
     },
-
-
 ]
 
 
-export const road_test_findings_two = [
+
+export const interior = [
     {
         id:1,
-        name: 'Acceleration'
+        name: 'Seats',
+        rating: null
     },
     {
         id:2,
-        name: 'Transmission shift Quality'
+        name: 'Headlinder',
+        rating: null
     },
     {
         id:3,
-        name: 'Steering'
+        name: 'Carpet',
+        rating: null
     },
     {
         id:4,
-        name: 'Suspension Performance'
+        name: 'Door Panels',
+        rating: null
+    },
+    {
+        id:5,
+        name: 'Glove Box',
+        rating: null
+    },
+    {
+        id:6,
+        name: 'Vanity mirror',
+        rating: null
+    },
+    {
+        id:7,
+        name: 'Interior Trim',
+        rating: null
+    },
+    {
+        id:8,
+        name: 'Dashboard',
+        rating: null
+    },
+    {
+        id:9,
+        name: 'Dashboard Gauges',
+        rating: null
+    },
+    {
+        id:10,
+        name: 'Air Conditioning',
+        rating: null
+    },
+    {
+        id:11,
+        name: 'Heater',
+        rating: null
+    },
+    {
+        id:12,
+        name: 'Defroster',
+        rating: null
+    },
+
+]
+
+
+
+export const electrical_system = [
+    {
+        id:1,
+        name: 'Power locks',
+        rating: null
+    },
+    {
+        id:2,
+        name: 'Power seats',
+        rating: null
+    },
+    {
+        id:3,
+        name: 'Power steering',
+        rating: null
+    },
+    {
+        id:4,
+        name: 'Power Windows',
+        rating: null
+    },
+    {
+        id:5,
+        name: 'Power Mirrors',
+        rating: null
+    },
+    {
+        id:6,
+        name: 'Audio System',
+        rating: null
+    },
+    {
+        id:7,
+        name: 'Onboard Computer',
+        rating: null
+    },
+    {
+        id:8,
+        name: 'Headlights',
+        rating: null
+    },
+    {
+        id:9,
+        name: 'Tail lights',
+        rating: null
+    },
+    {
+        id:10,
+        name: 'Signal lights',
+        rating: null
+    },
+    {
+        id:11,
+        name: 'Breaklights',
+        rating: null
+    },
+    {
+        id:12,
+        name: 'Parking lights',
+        rating: null
+    },
+
+]
+
+
+
+export const road_test_findings = [
+    {
+        id:1,
+        name: 'Starting',
+        rating: null
+    },
+    {
+        id:2,
+        name: 'Idling',
+        rating: null
+    },
+    {
+        id:3,
+        name: 'Engine Performance',
+        rating: null
+    },
+    {
+        id:4,
+        name: 'Acceleration',
+        rating: null
+    },
+    {
+        id:5,
+        name: 'Transmission shift Quality',
+        rating: null
+    },
+    {
+        id:6,
+        name: 'Steering',
+        rating: null
+    },
+    {
+        id:7,
+        name: 'Suspension Performance',
+        rating: null
     },
 
 
 ]
+

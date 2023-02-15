@@ -5,11 +5,9 @@ import {
   Typography,
   Button,
   Grid,
-  TextField,
   TextareaAutosize,
 } from "@mui/material";
 import SubNavBar from "../../../../src/components/SubNavBar";
-import { exterior } from "../../../../src/utils/temp-data";
 import { useRouter } from "next/router";
 
 //component to be added to the DOM
@@ -69,13 +67,7 @@ const UploadComponent = () => {
 export default function UploadImage() {
   let inputRef;
   const router = useRouter();
-  const [ext, setExt] = useState(exterior);
-  const [open, setOpen] = useState(false);
   const [uploadList, setUploadList] = useState([]);
-
-  useEffect(() => {
-    setExt(ext);
-  }, [ext]);
 
   // buton to add new element to the DOM
   const onAddBtnClick = (event) => {
@@ -373,6 +365,7 @@ export default function UploadImage() {
 
               <div className="col-7">
                 <Button
+                 onClick={() => router.back()}
                   variant="contained"
                   size="small"
                   fullWidth

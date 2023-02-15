@@ -6,7 +6,10 @@ import Boxes from "../../../../src/components/Boxes";
 import { exterior } from "../../../../src/utils/temp-data";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { nextStage, prevStage } from "../../../../src/store/reducers/stageReducer";
+import {
+  nextStage,
+  prevStage,
+} from "../../../../src/store/reducers/stageReducer";
 
 export default function StageThree() {
   const router = useRouter();
@@ -14,10 +17,29 @@ export default function StageThree() {
   const [ext, setExt] = useState(exterior);
   const [selectedId, setSelectedId] = useState(null);
   const dispatch = useDispatch();
+  // const [isDisabled, setIsDisabled] = useState(true)
 
   useEffect(() => {
-    setExt(ext);
-  }, [ext]);
+    const persistedRatings = JSON.parse(
+      localStorage.getItem("stagethree-ratings")
+    );
+
+    if (persistedRatings !== null) setExt(persistedRatings);
+  }, []);
+
+  // console.log(ext)
+
+  //the function  update the rating for each id in the array of objects
+  const updateRating = (id, rating) => {
+    setExt((prevData) =>
+      prevData.map((item) => {
+        if (item.id === id) {
+          return { ...item, rating };
+        }
+        return item;
+      })
+    );
+  };
 
   //this function display the previous button for each car part
   function displayPreview(id) {
@@ -25,8 +47,24 @@ export default function StageThree() {
     setSelectedId(id !== selectedId ? id : null);
   }
 
+  //loop through the array (ext) and check if some of the objects values is equal to null
+  //if they r equal to null, The default value of isDisabled is true
+  const isDisabled = ext.some((obj) =>
+    Object.values(obj).some((values) => values === null)
+  );
+
+  //this function save the ratings value nd takes the user to the next stage
+  const movetoNextStage = () => {
+    localStorage.setItem("stagethree-ratings", JSON.stringify(ext));
+    dispatch(nextStage());
+  };
+
   return (
-    <InspectionLayout title="Inspection Stage 3" backgroundColor={"#000"} bodyHeight="90vh">
+    <InspectionLayout
+      title="Inspection Stage 3"
+      backgroundColor={"#000"}
+      bodyHeight="90vh"
+    >
       <Box sx={{ height: "100%", width: "100%", backgroundColor: "#fff" }}>
         <SubNavBar header="Inspection Stage 3" />
         <div className="px-4">
@@ -54,7 +92,9 @@ export default function StageThree() {
               style={{ display: "flex", justifyContent: "flex-end" }}
             >
               <Button
-                onClick={() => router.push(`/inspection/${id}/stages/upload-image`)}
+                onClick={() =>
+                  router.push(`/inspection/${id}/stages/upload-image`)
+                }
                 sx={{
                   mt: 2,
                   color: "#243773",
@@ -91,7 +131,11 @@ export default function StageThree() {
                       {carExt.name}
                     </Typography>
                   </Grid>
-                  <Boxes />
+                  <Boxes
+                    id={carExt.id}
+                    rating={carExt.rating}
+                    updateRating={updateRating}
+                  />
                 </Grid>
                 <Box
                   xs={4}
@@ -141,9 +185,8 @@ export default function StageThree() {
 
               <div className="col-7">
                 <Button
-                  onClick={() => {
-                    dispatch(nextStage())
-                  }}
+                  disabled={isDisabled}
+                  onClick={movetoNextStage}
                   variant="contained"
                   size="small"
                   fullWidth

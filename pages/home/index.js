@@ -120,7 +120,7 @@ export default function HomeIndex() {
                  cars && cars.length > 0 ? (
                     cars.map(item => (
                         <div className="mb-4" key={Math.random()}>
-                            <CarItem carLink={`/inspection/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'View Details'} />
+                            <CarItem carLink={buttonSelect === 'old' ? `inspection/${item.id}/continue` : `/inspection/${item.id}`} image_url={item.image} address={item.description} model={item.model} date={item.date} button_text={buttonSelect=='old' ? 'Continue' : 'Start Inspection'} />
                         </div>
                     ))
                  ) : ( 

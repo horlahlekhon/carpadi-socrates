@@ -3,46 +3,65 @@ import InspectionLayout from "../../../../src/layouts/InspectionLayout";
 import { Box, Typography, Button, Grid } from "@mui/material";
 import SubNavBar from "../../../../src/components/SubNavBar";
 import Boxes from "../../../../src/components/Boxes";
-import {
-  electrical_system_two,
-  road_test_findings_one,
-} from "../../../../src/utils/temp-data";
+import { interior } from "../../../../src/utils/temp-data";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { nextStage, prevStage } from "../../../../src/store/reducers/stageReducer";
-
+import {
+  nextStage,
+  prevStage,
+} from "../../../../src/store/reducers/stageReducer";
 
 export default function StageEight() {
   const router = useRouter();
   const id = router.query.id;
-  const [roadTest, setRoadTest] = useState(road_test_findings_one);
-  const [electricSystemTwo, setElectricSystemTwo] = useState(
-    electrical_system_two
-  );
-  const [selectedElectricId, setSelectedElectricId] = useState(null);
-  const [selectedRoadId, setSelectedRoadId] = useState(null);
+  const [int, setInt] = useState(interior);
+  const [selectedIntId, setSelectedIntId] = useState(null);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    setRoadTest(roadTest);
-    setElectricSystemTwo(electricSystemTwo);
-  }, [roadTest, electricSystemTwo]);
+    const persistedRatings = JSON.parse(
+      localStorage.getItem("stageeight-ratings")
+    );
+
+    if (persistedRatings !== null) setInt(persistedRatings);
+  }, []);
 
   //this function display the previous button for each car part
   function displayPreview(id) {
     // if the part id is not equal to selectedid, then set the value to current id
-    setSelectedElectricId(id !== selectedElectricId ? id : null);
+    setSelectedIntId(id !== selectedIntId ? id : null);
   }
 
-  //this function display the previous button for each car part
-  function displayPreviewTwo(id) {
-    // if the part id is not equal to selectedid, then set the value to current id
-    setSelectedRoadId(id !== selectedRoadId ? id : null);
-  }
+  //the function  update the rating for each id in the array of objects
+  const updateRating = (id, rating) => {
+    setInt((prevData) =>
+      prevData.map((item) => {
+        if (item.id === id) {
+          return { ...item, rating };
+        }
+        return item;
+      })
+    );
+  };
+
+  //loop through the array (ext) and check if some of the objects values is equal to null
+  //if they r equal to null, The default value of isDisabled is true
+  const isDisabled = int.some((obj) =>
+    Object.values(obj).some((values) => values === null)
+  );
+
+  //this function save the ratings value nd takes the user to the next stage
+  const movetoNextStage = () => {
+    localStorage.setItem("stageeight-ratings", JSON.stringify(int));
+    dispatch(nextStage());
+  };
 
   return (
-    <InspectionLayout title="Inspection Stage 8" backgroundColor={"#000"} bodyHeight="90vh">
+    <InspectionLayout
+      title="Inspection Stage 8"
+      backgroundColor={"#000"}
+      bodyHeight="90vh"
+    >
       <Box sx={{ height: "100%", width: "100%", backgroundColor: "#fff" }}>
         <SubNavBar header="Inspection Stage 8" />
         <div className="px-4">
@@ -64,9 +83,15 @@ export default function StageEight() {
                 P=Poor
               </Typography>
             </Grid>
-            <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Grid
+              item
+              xs={6}
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
               <Button
-                onClick={() => router.push(`/inspection/${id}/stages/upload-image`)}
+                onClick={() =>
+                  router.push(`/inspection/${id}/stages/upload-image`)
+                }
                 sx={{
                   mt: 2,
                   color: "#243773",
@@ -80,9 +105,9 @@ export default function StageEight() {
           </Grid>
 
           <div className="py-3">
-            <div className="small fw-bold">Electrical System</div>
-            {electricSystemTwo.map((carElectric) => (
-              <div key={carElectric.id}>
+            <div className="small fw-bold">Interior</div>
+            {int.map((carInterior) => (
+              <div key={carInterior.id}>
                 <Grid
                   container
                   sx={{
@@ -93,78 +118,27 @@ export default function StageEight() {
                 >
                   <Grid item xs={8}>
                     <Typography
-                      onClick={() => displayPreview(carElectric.id)}
+                      onClick={() => displayPreview(carInterior.id)}
                       sx={{
                         fontWeight: 400,
                         fontSize: "16px",
                         cursor: "pointer",
                       }}
                     >
-                      {carElectric.name}
+                      {carInterior.name}
                     </Typography>
                   </Grid>
-                  <Boxes />
+                  <Boxes
+                    id={carInterior.id}
+                    rating={carInterior.rating}
+                    updateRating={updateRating}
+                  />
                 </Grid>
                 <Box
                   xs={4}
                   sx={{
                     display: `${
-                      selectedElectricId === carElectric.id ? "flex" : "none"
-                    }`,
-                    boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.16)",
-                    padding: "8px",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <Box
-                    onClick={() =>
-                      router.push(`/inspection/${id}/stages/upload-stage`)
-                    }
-                    sx={{
-                      color: "#243773",
-                      fontSize: "12px",
-                      fontWeight: 600,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Preview
-                  </Box>
-                </Box>
-              </div>
-            ))}
-          </div>
-          <div className="py-3">
-            <div className="small fw-bold">Road Test Findings</div>
-            {roadTest.map((carRoadTest) => (
-              <div key={carRoadTest.id}>
-                <Grid
-                  container
-                  sx={{
-                    mt: 2,
-                    boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.16)",
-                    padding: "8px",
-                  }}
-                >
-                  <Grid item xs={8}>
-                    <Typography
-                      onClick={() => displayPreviewTwo(carRoadTest.id)}
-                      sx={{
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {carRoadTest.name}
-                    </Typography>
-                  </Grid>
-                  <Boxes />
-                </Grid>
-                <Box
-                  xs={4}
-                  sx={{
-                    display: `${
-                      selectedRoadId === carRoadTest.id ? "flex" : "none"
+                      selectedIntId === carInterior.id ? "flex" : "none"
                     }`,
                     boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.16)",
                     padding: "8px",
@@ -194,7 +168,7 @@ export default function StageEight() {
             <div className="row">
               <div className="col-5 px-1">
                 <Button
-                   onClick={() => {
+                  onClick={() => {
                     dispatch(prevStage());
                   }}
                   variant="outlined"
@@ -213,9 +187,8 @@ export default function StageEight() {
 
               <div className="col-7">
                 <Button
-                   onClick={() => {
-                    dispatch(nextStage());
-                  }}
+                  disabled={isDisabled}
+                  onClick={movetoNextStage}
                   variant="contained"
                   size="small"
                   fullWidth

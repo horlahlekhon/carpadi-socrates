@@ -1,14 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 import SubNavBar from "../../../../src/components/SubNavBar";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import InspectionLayout from "../../../../src/layouts/InspectionLayout";
 import { useDispatch } from "react-redux";
 import { nextStage } from "../../../../src/store/reducers/stageReducer";
+import { useRouter } from "next/router";
+import { Form } from "react-bootstrap";
 
 export default function StageOne() {
+  const router = useRouter()
   const dispatch = useDispatch();
 
+  const [formData, setFormData] = useState({
+    inspectorname: '',
+    inspectiondate: '',
+    ownersname: '',
+    year: '',
+    brand: '',
+    model: '',
+    mileage: '',
+    vin: '',
+    review: ''
+  });
+
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+
+  };
+
+
+  const isFormDataEmpty = () => {
+    return Object.values(formData).some(value => value === '');
+  };
+
+  const isDisabled = isFormDataEmpty()
+
+
+  
+  const handleSubmit = (event) => {
+      event.preventDefault()
+
+      localStorage.setItem("stageOneFormData", JSON.stringify(formData));
+      dispatch(nextStage())
+  }
+
+
+  useEffect(() => {
+    const persistedData = localStorage.getItem("stageOneFormData");
+    
+    if (persistedData !== null) setFormData(JSON.parse(persistedData));
+  }, []);
+ 
+ 
 
   return (
     <InspectionLayout
@@ -18,11 +66,14 @@ export default function StageOne() {
     >
       <Box sx={{ height: "100%", width: "100%", backgroundColor: "#fff" }}>
         <SubNavBar header="Inspection Stage 1" />
+        <Form onSubmit={handleSubmit}>
         <div className="px-4 mb-5">
           <div>
             <div className="py-2">
               <div className="small fw-bold">Inspector's Details</div>
 
+    
+    
               <Grid container sx={{ mt: 2 }}>
                 <Grid item xs={5}>
                   <Typography sx={{ fontWeight: 400, fontSize: "16px" }}>
@@ -38,6 +89,10 @@ export default function StageOne() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="Jhon Do Smith"
+                    name="inspectorname"
+                    value={formData.inspectorname}
+                    onChange={handleChange}
+                    
                   />
                   <TextField
                     sx={{
@@ -48,6 +103,10 @@ export default function StageOne() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="June 12 | 2020"
+                    name="inspectiondate"
+                    value={formData.inspectiondate}
+                    onChange={handleChange}
+                    
                   />
                 </Grid>
               </Grid>
@@ -82,6 +141,10 @@ export default function StageOne() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="Yusuf Adebayo"
+                    name="ownersname"
+                    value={formData.ownersname}
+                    onChange={handleChange}
+                    
                   />
                   <TextField
                     sx={{
@@ -90,8 +153,13 @@ export default function StageOne() {
                       px: 1,
                     }}
                     id="standard-basic"
+                    type='number'
                     variant="standard"
                     placeholder="2015"
+                    name="year"
+                    value={formData.year}
+                    onChange={handleChange}
+                    
                   />
                   <TextField
                     sx={{
@@ -102,6 +170,10 @@ export default function StageOne() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="Toyota"
+                    name="brand"
+                    value={formData.brand}
+                    onChange={handleChange}
+                    
                   />
                   <TextField
                     sx={{
@@ -112,6 +184,10 @@ export default function StageOne() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="Camry"
+                    name="model"
+                    value={formData.model}
+                    onChange={handleChange}
+                    
                   />
                   <TextField
                     sx={{
@@ -120,8 +196,14 @@ export default function StageOne() {
                       px: 1,
                     }}
                     id="standard-basic"
+                    type='number'
+                    pattern='(?=.{1,8}$)\d+)'
                     variant="standard"
                     placeholder="18,000"
+                    name="mileage"
+                    value={formData.mileage}
+                    onChange={handleChange}
+                    
                   />
                   <TextField
                     sx={{
@@ -132,6 +214,10 @@ export default function StageOne() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="BC83891899837"
+                    name="vin"
+                    value={formData.vin}
+                    onChange={handleChange}
+                    
                   />
                 </Grid>
               </Grid>
@@ -147,6 +233,10 @@ export default function StageOne() {
               <TextareaAutosize
                 aria-label="review"
                 placeholder="Type Here"
+                name="review"
+                value={formData.review}
+                onChange={handleChange}
+                
                 style={{
                   width: "100%",
                   outline: "0",
@@ -155,6 +245,7 @@ export default function StageOne() {
                   padding: "0 0 50px",
                   border: "none",
                   borderBottom: "1px solid #DEDEDE",
+                  
                 }}
               />
             </div>
@@ -183,9 +274,9 @@ export default function StageOne() {
 
                 <div className="col-7">
                   <Button
-                    onClick={() => {
-                      dispatch(nextStage())
-                    }}
+                  type='submit'
+                    disabled={isDisabled}
+                    
                     variant="contained"
                     size="small"
                     fullWidth
@@ -206,6 +297,7 @@ export default function StageOne() {
             </div>
           </div>
         </div>
+        </Form>
       </Box>
     </InspectionLayout>
   );

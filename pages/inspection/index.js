@@ -139,13 +139,13 @@ export default function InspectionIndex() {
           cars.map((item) => (
             <div className="mb-4" key={Math.random()}>
               <CarItem
-                carLink={`${link}/${item.id}`}
+                carLink={buttonSelect === 'old' ? `inspection/${item.id}/continue` : `${link}/${item.id}`}
                 image_url={item.image}
                 address={item.description}
                 model={item.model}
                 date={item.date}
                 button_text={
-                  buttonSelect == "old" ? "Continue" : "View Details"
+                  buttonSelect === "new" ? "Start Inspection" : buttonSelect === "old" ? "Continue" : buttonSelect === "inspected" ? "View Details" : ""
                 }
               />
             </div>
